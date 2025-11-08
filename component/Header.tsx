@@ -9,8 +9,8 @@ export default function Header() {
                 <div className="cursor-pointer"><ThemeToggle /></div>
                 <div className="cursor-pointer"><Bell /></div>
                 
-                <div className="bg-amber-50 border rounded-full p-2 cursor-pointer ">
-                    <User />
+                <div className="bg-amber-50  border  rounded-full p-2 cursor-pointer ">
+                    <User className="text-[var(--textColor)] dark:text-[var(--textColor)]" />
                 </div>
                
             </div>

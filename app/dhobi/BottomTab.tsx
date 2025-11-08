@@ -17,7 +17,7 @@ export default function BottomTab() {
   const pathnameN = normalize(pathname)
 
   return (
-    <nav className={styles.bottomTab} aria-label="Mobile navigation">
+    <nav className={`${styles.bottomTab} dark:border dark:border-[var(--textColor)]`} aria-label="Mobile navigation">
       {tabs.map((t) => {
         const hrefN = normalize(t.href)
         const isActive = t.exact

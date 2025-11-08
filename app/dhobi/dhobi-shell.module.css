@@ -104,7 +104,7 @@
     right: 12px;
     bottom: 12px;
     height: 56px;
-    background: #fff;
+    background: var(--foreground);
     border-radius: 12px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.12);
     align-items: center;
@@ -115,7 +115,7 @@
 
   .tabItem {
     text-decoration: none;
-    color: #333;
+    color: var(--textColor);
     font-size: 20px;
     display: inline-flex;
     align-items: center;
@@ -130,7 +130,7 @@
   }
 
   .tabItemActive {
-    background: #7ba3ec;
+    background: var(--primary);
     color: black;
   }
 }
