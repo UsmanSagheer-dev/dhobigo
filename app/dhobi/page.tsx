@@ -16,7 +16,7 @@ export default function DhobiPortal() {
       </div>
       <div className='mt-5 p-5 bg-[var(--foreground)] dark:bg-slate-900 rounded-lg'>
         <h1>Quick Tips / تجاویز</h1>
-        <ul className='list-disc   ml-5 mt-2 text-[var(--textSecondary)] dark:text-[var(--textSecondary)]'>
+        <ul className='list-disc flex flex-col gap-5  ml-5 mt-2 text-[var(--textSecondary)] dark:text-[var(--textSecondary)]'>
           <li>Make sure to update your availability status regularly. </li>
           <li>  اپنی دستیابی کی حیثیت کو باقاعدگی سے اپ ڈیٹ کرنا یقینی بنائیں۔</li>
           <li>Respond promptly to new orders to enhance customer satisfaction. </li>
