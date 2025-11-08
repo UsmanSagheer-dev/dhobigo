@@ -1,0 +1,121 @@
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: var(--sidebar-width, 260px);
+  border-right: 1px solid var(--border);
+  background: var(--card);
+  /* desktop: sidebar visible */
+  position: relative;
+  transform: none;
+  transition: transform 0.25s ease;
+  z-index: 60;
+}
+
+.sidebarCollapsedContainer {
+  width: 72px;
+  transition: width 180ms ease;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: 16px;
+  margin: 0 auto;
+  width: 98%;
+}
+
+.menuButton {
+  display: none; /* shown on smaller screens via media query */
+}
+
+.overlayHidden {
+  display: none;
+}
+
+
+/* Responsive behavior: when viewport is below ~1024px, hide the sidebar by default and use overlay */
+@media (max-width: 1024px) {
+  /* container uses the same rules as desktop; no extra properties needed here */
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    width: 260px;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.12);
+  }
+
+  /* sidebar stays hidden on small screens; no toggle UI (mobile navigation uses BottomTab) */
+
+  .menuButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background: transparent;
+  }
+
+  .overlayVisible {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 50;
+  }
+}
+
+/* Bottom tab (mobile) */
+.bottomTab {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .bottomTab {
+    display: flex;
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    height: 56px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    align-items: center;
+    justify-content: space-around;
+    z-index: 80;
+    padding: 0 8px;
+  }
+
+  .tabItem {
+    text-decoration: none;
+    color: #333;
+    font-size: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+  }
+
+  .tabItem:active, .tabItem:focus {
+    background: rgba(0,0,0,0.06);
+  }
+
+  .tabItemActive {
+    background: #7ba3ec;
+    color: black;
+  }
+}

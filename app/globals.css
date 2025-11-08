@@ -1,26 +1,48 @@
 @import "tailwindcss";
 
+/*
+  Theme variables. We use CSS custom properties and toggle a `.dark` class
+  on the root element (html) to switch themes. A small inline script will set
+  the class before hydration to avoid a flash-of-unstyled-theme (FOUC).
+*/
+
 :root {
   --background: #ffffff;
-
+  --foreground: #111827; /* gray-900 */
+  --muted: #6b7280; /* gray-500 */
+  --card: #ffffff;
+  --border: #e5e7eb; /* gray-200 */
+  --accent: #2563eb; /* blue-600 */
+  --font-sans: var(--font-geist-sans, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  --background: #0b1220; /* very dark blue/gray */
+  --foreground: #e6eef8; /* light */
+  --muted: #9ca3af;
+  --card: #0f1724;
+  --border: #1f2937;
+  --accent: #60a5fa;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* --background: #0a0a0a; */
-    --foreground: #ededed;
-  }
+/* Provide a smooth color transition for theme changes */
+html {
+  color-scheme: light dark;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  transition: background-color 160ms ease, color 160ms ease;
 }
+
+/* Utility defaults for components that used hardcoded colors */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+}
+
+.muted { color: var(--muted); }
+
