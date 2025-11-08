@@ -2,8 +2,8 @@ import React from 'react'
 import { DollarSignIcon, PowerIcon } from 'lucide-react'
 export default function DhobiPortalCard(props: any) {
   return (
-    <div className='flex flex-1 items-center justify-between bg-stone-50 p-5 rounded-lg'>
-      <div className='flex flex-col  gap-1 items-center justify-center'>
+    <div className='flex flex-1 items-center justify-between bg-white p-5 rounded-lg'>
+      <div className='flex flex-col  gap-1 items-start justify-center'>
         <p className='text-[14px]'>{props?.title}</p>
         <p className='font-bold'>{props?.urduTitle}</p>
         <p className={`${props.subtitleColor} font-bold`}>{props?.subtitle}</p>

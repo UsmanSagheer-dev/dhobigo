@@ -1,32 +1,20 @@
 "use client"
-import React from "react";
+
 import { Sun, Moon } from "lucide-react";
+import { useTheme } from "next-themes";
 
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = React.useState<boolean>(() => {
-    try {
-      const stored = typeof window !== "undefined" && localStorage.getItem("theme");
-      if (stored) return stored === "dark";
-      return typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-    } catch (e) {
-      return false;
-    }
-  });
-
-  React.useEffect(() => {
-    try {
-      if (isDark) document.documentElement.classList.add("dark");
-      else document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    } catch (e) {
-      /* ignore */
-    }
-  }, [isDark]);
+  const {theme, setTheme} = useTheme();   
+  const isDark = theme === "dark";
+  const handlethemechange = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  
+  };
 
   return (
     <button
       aria-label="Toggle theme"
-      onClick={() => setIsDark((v) => !v)}
+      onClick={() => handlethemechange( )}
       style={{
         display: "inline-flex",
         alignItems: "center",

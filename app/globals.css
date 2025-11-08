@@ -5,7 +5,7 @@
   on the root element (html) to switch themes. A small inline script will set
   the class before hydration to avoid a flash-of-unstyled-theme (FOUC).
 */
-
+@custom-variant dark (&:where(.dark, .dark *));
 :root {
   --background: #ffffff;
   --foreground: #111827; /* gray-900 */
