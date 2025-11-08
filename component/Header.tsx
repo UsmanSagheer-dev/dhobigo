@@ -3,7 +3,7 @@ import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
     return (
-        <header style={{padding:16, borderBottom:'1px solid var(--border)', backgroundColor:'var(--card)', display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
+        <header style={{padding:16, borderBottom:'1px solid var(--border)', backgroundColor:'var(--foreground)', display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
   
             <div style={{display:'flex', gap:20, alignItems:'center'}}>
                 <div className="cursor-pointer"><ThemeToggle /></div>
