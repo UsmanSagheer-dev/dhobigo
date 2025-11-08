@@ -8,10 +8,16 @@
   border-right: 1px solid var(--border);
   background: var(--card);
   /* desktop: sidebar visible */
-  position: relative;
+  /* keep the sidebar fixed on desktop so it doesn't scroll with content */
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
   transform: none;
   transition: transform 0.25s ease;
   z-index: 60;
+  overflow-y: auto;
 }
 
 .sidebarCollapsedContainer {
@@ -27,9 +33,13 @@
 
 .main {
   flex: 1;
-  padding: 16px;
   margin: 0 auto;
-  width: 98%;
+  width: 100%;
+}
+
+/* when sidebar is fixed, make space for it so the content doesn't go under */
+.container {
+  padding-left: var(--sidebar-width, 260px);
 }
 
 .menuButton {
@@ -53,6 +63,11 @@
     transform: translateX(-100%);
     width: 260px;
     box-shadow: 2px 0 8px rgba(0,0,0,0.12);
+  }
+
+  /* on small screens, remove the desktop padding so content fills the viewport */
+  .container {
+    padding-left: 0;
   }
 
   /* sidebar stays hidden on small screens; no toggle UI (mobile navigation uses BottomTab) */

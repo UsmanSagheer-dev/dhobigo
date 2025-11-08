@@ -1,0 +1,19 @@
+.header {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--card);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  /* Keep header visible on small/tablet screens */
+  position: sticky;
+  top: 0;
+  z-index: 70;
+}
+
+/* On large screens the header should scroll away with the page (not fixed) */
+@media (min-width: 1025px) {
+  .header {
+    position: static;
+  }
+}
