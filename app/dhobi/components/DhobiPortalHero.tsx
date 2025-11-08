@@ -11,9 +11,9 @@ export default function DhobiPortalHero() {
   };
 
   return (
-      <div className='flex items-center gap-2 flex-col bg-white p-10 rounded-lg mt-5'>
-            <p className='text-black'>Your are {active ? 'Online' : 'Offline'}</p>
-            <p className='text-black font-bold'>آپ {active ? 'آن لائن ہیں' : 'آف لائن ہیں'}</p>
+      <div className='flex items-center gap-2 flex-col bg-white dark:bg-slate-900 p-10 rounded-lg mt-5'>
+            <p  >Your are {active ? 'Online' : 'Offline'}</p>
+            <p className='  font-bold'>آپ {active ? 'آن لائن ہیں' : 'آف لائن ہیں'}</p>
     <div 
       onClick={handleClick} 
       className={`h-50 w-50 rounded-full flex items-center justify-center transition-all duration-300 relative
