@@ -5,6 +5,14 @@
   on the root element (html) to switch themes. A small inline script will set
   the class before hydration to avoid a flash-of-unstyled-theme (FOUC).
 */
+/* Local font registration - using font files placed in public/assets/min/fonts */
+@font-face {
+  font-family: 'Noto Nastaliq Urdu';
+  src: url('/assets/min/fonts/NotoNastaliqUrdu-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 @custom-variant dark (&:where(.dark, .dark *));
 :root {
   --primary: #2563eb;
@@ -15,7 +23,8 @@
   --textSecondary: #768497; /* gray-500 */
   --border: #e5e7eb; /* gray-200 */
   --accent: #2563eb; /* blue-600 */
-  --font-sans: var(--font-geist-sans, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial);
+  /* Use the local Noto Nastaliq Urdu font first, fall back to Geist/ system fonts */
+  --font-sans: 'Noto Nastaliq Urdu', var(--font-geist-sans, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial);
 }
 
 .dark {
