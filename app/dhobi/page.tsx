@@ -1,10 +1,13 @@
+
+import { PowerIcon } from 'lucide-react'
 import React from 'react'
 
- const page = () => {
+export default function DhobiPortal() {
   return (
     <div>
-        Page
-      </div>
+        <h1>navaar</h1>
+        
+        page</div>
   )
 }
 
