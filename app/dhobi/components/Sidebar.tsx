@@ -95,7 +95,7 @@ const navLinkStyle: React.CSSProperties = {
   gap: 12,
   padding: "12px 18px",
   borderRadius: 12,
-  color: "#333",
+  color: "var(--foreground)",
   textDecoration: "none",
   minWidth: 180,
   // make it easier to scan and look consistent
