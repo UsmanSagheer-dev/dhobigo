@@ -7,20 +7,24 @@
 */
 @custom-variant dark (&:where(.dark, .dark *));
 :root {
-  --background: #ffffff;
-  --foreground: #111827; /* gray-900 */
-  --muted: #6b7280; /* gray-500 */
-  --card: #ffffff;
+  --primary: #2563eb;
+  --secondary: #00c950;
+  --background: #eef2ff;
+  --foreground: white; /* gray-900 */
+  --textColor: #000000; /* gray-500 */
+  --textSecondary: #768497; /* gray-500 */
   --border: #e5e7eb; /* gray-200 */
   --accent: #2563eb; /* blue-600 */
   --font-sans: var(--font-geist-sans, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial);
 }
 
 .dark {
-  --background: #0b1220; /* very dark blue/gray */
-  --foreground: #e6eef8; /* light */
-  --muted: #9ca3af;
-  --card: #0f1724;
+  --primary: #3b82f6;
+  --secondary: #22c55e;
+  --background: black; /* very dark blue/gray */
+  --foreground: #0f172b; /* light */
+  --textColor: white;
+   --textSecondary: #a6adb9;
   --border: #1f2937;
   --accent: #60a5fa;
 }
@@ -32,17 +36,17 @@ html {
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--textColor);
   font-family: var(--font-sans);
   transition: background-color 160ms ease, color 160ms ease;
 }
 
 /* Utility defaults for components that used hardcoded colors */
 .card {
-  background: var(--card);
+  background: var(--foreground);
   border: 1px solid var(--border);
-  color: var(--foreground);
+  color: var(--textColor);
 }
 
-.muted { color: var(--muted); }
+.muted { color: var(--textSecondary); }
 
