@@ -73,7 +73,7 @@
   /* sidebar stays hidden on small screens; no toggle UI (mobile navigation uses BottomTab) */
 
   .menuButton {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 36px;

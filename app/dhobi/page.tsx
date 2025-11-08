@@ -14,7 +14,7 @@ export default function DhobiPortal() {
         <DhobiPortalCard title="Today's Earning" urduTitle="آج کی کمائی" subtitle="$ 250" subtitleColor="text-green-500" icon={<DollarSignIcon />} iconbgColor="bg-green-500" />
         <DhobiPortalCard title="Active Orders" urduTitle="فعال آرڈرز" subtitle="0" subtitleColor="text-blue-500" icon={<DollarSignIcon />} iconbgColor="bg-blue-500" />
       </div>
-      <div className='mt-5 p-5 bg-[var(--foreground)] dark:bg-slate-900 rounded-lg'>
+      <div className='mt-5 p-5 bg-[var(--foreground)] dark:bg-[var(--foreground)] rounded-lg'>
         <h1>Quick Tips / تجاویز</h1>
         <ul className='list-disc flex flex-col gap-5  ml-5 mt-2 text-[var(--textSecondary)] dark:text-[var(--textSecondary)]'>
           <li>Make sure to update your availability status regularly. </li>
