@@ -1,7 +1,26 @@
-import React from 'react'
+import React from "react";
 
-export default function Button(props: any) {
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  title?: React.ReactNode;
+  icon?: React.ReactNode;
+};
+
+export default function Button({
+  title,
+  icon,
+  className = "",
+  children,
+  ...rest
+}: ButtonProps) {
+  const label = title ?? children;
+
   return (
-    <button className={`bg-[var(--primary)] cursor-pointer flex items-center justify-center text-[var(--foreground)] py-2 px-4 rounded-lg ${props?.className}`}>{props?.icon} {props.Title}</button>
-  )
+    <button
+      {...rest}
+      className={`inline-flex items-center justify-center py-2 px-4 rounded-lg bg-(--primary) text-(--foreground) cursor-pointer ${className}`}
+    >
+      {icon && <span className="mr-2 flex items-center">{icon}</span>}
+      {label && <span className="whitespace-nowrap ">{label}</span>}
+    </button>
+  );
 }
