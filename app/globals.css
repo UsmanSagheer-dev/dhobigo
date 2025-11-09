@@ -8,10 +8,11 @@
 /* Local font registration - using font files placed in public/assets/min/fonts */
 @font-face {
   font-family: 'Noto Nastaliq Urdu';
-  src: url('/assets/min/fonts/NotoNastaliqUrdu-Regular.ttf') format('truetype');
+  src: url('/assets/min/fonts/Roboto_Condensed-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  padding: 0;
+ 
 }
 @custom-variant dark (&:where(.dark, .dark *));
 :root {
