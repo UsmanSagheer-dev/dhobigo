@@ -1,6 +1,6 @@
 import Button from "@/component/Button";
-import { MapPin, MessageSquareMore, Navigation, Phone, Star, } from "lucide-react";
-
+import {   MapPin, MessageSquareMore, Navigation, Phone, Star, } from "lucide-react";
+import Link from 'next/link'
 export default function Order({
   orderId,
   customerPhoto,
@@ -108,10 +108,13 @@ export default function Order({
           className="flex-1 bg-[var(--secondary)] hover:bg-[var(--secondary)]"
           icon={<Navigation size={18} />}
         />
+        <Link href={`/dhobi/orders/pickup/${orderId}`} className="flex-1">
         <Button
+       
           title="Start Pickup"
-          className="flex-1 bg-[var(--primary)] hover:bg-[var(--primary)]"
+          className="w-full bg-[var(--primary)] hover:bg-[var(--primary)]"
         />
+        </Link>
         <Button
           title="Driver Sent"
           className="flex-1 bg-[var(--textSecondary)] hover:bg-[var(--textSecondary)]"
