@@ -30,7 +30,7 @@ export default function Pickup() {
         </Link>
         <span>
           <h1>Pickup</h1>
-          <h1>پک اپ</h1>
+          <h1 className="text-[var(--textSecondary)]  ">پک اپ</h1>
         </span>
       </div>
       <div className='flex flex-col justify-center items-center relative  gap-2 bg-indigo-200  p-10 rounded-lg'>
@@ -74,10 +74,10 @@ export default function Pickup() {
           <li className='list-decimal text-[var(--textColor)] '>
             <p>Enter Customer OTP / گاہک کا او ٹی پی درج کریں</p>
             <div className='flex flex-col justify-center items-center h-30 rounded-lg gap-2 mt-2 text-[var(--textSecondary)] bg-[var(--foreground)]  p-5'>
-             <Input/>
+              <Input />
             </div>
           </li>
-          
+
 
         </ol>
       </div>
