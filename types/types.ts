@@ -29,3 +29,23 @@ export type OfferCardProps = {
   onAccept?: () => void;
   onCounter?: () => void;
 };
+
+export type PayoutHistoryItemProps = {
+  date: string;
+  orders: number;
+  amount: number;
+  status?: "Paid" | "Pending";
+  
+};
+
+export type Props = {
+  label: string;
+  labelSecondary?: string; 
+  value?: string;
+  placeholder?: string;
+  onChange?: (v: string) => void;
+  icon?: React.ReactNode;
+  readOnly?: boolean;
+  type?: string;
+  name?: string;
+};
