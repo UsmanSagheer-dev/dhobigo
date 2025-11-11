@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import offersReducer from "./slices/offersSlice";
+import profileReducer from "./slices/profileSlice";
 import { loadFromStorage, saveToStorage } from "@/utils/storage";
 import IMAGES from "@/public/assets/images";
 
 const STORAGE_KEY = "dhobigo_offers_v1";
+const PROFILE_STORAGE_KEY = "dhobigo_profile_v1";
 
 function loadInitialOffers() {
   const stored = loadFromStorage(STORAGE_KEY);
@@ -42,14 +44,32 @@ function loadInitialOffers() {
   ];
 }
 
+const initialOffers = loadInitialOffers();
+const initialProfile = loadFromStorage(PROFILE_STORAGE_KEY);
+
 export const store = configureStore({
-  reducer: { offers: offersReducer },
-  preloadedState: { offers: { offers: loadInitialOffers() } },
+  reducer: { offers: offersReducer, profile: profileReducer },
+  preloadedState: { offers: { offers: initialOffers }, profile: initialProfile || undefined },
 });
 
 store.subscribe(() => {
   const state = store.getState();
-  saveToStorage(STORAGE_KEY, state.offers.offers);
+  try {
+    saveToStorage(STORAGE_KEY, state.offers.offers);
+  } catch (e) {
+    // ignore storage errors
+  }
+
+  try {
+    // persist profile slice (without status/error)
+    const { profile } = state as any;
+    if (profile) {
+      const { name, nameUrdu, phone, shopAddress, workingHours } = profile;
+      saveToStorage(PROFILE_STORAGE_KEY, { name, nameUrdu, phone, shopAddress, workingHours });
+    }
+  } catch (e) {
+    // ignore storage errors
+  }
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -1,9 +1,5 @@
-import React from 'react'
+import ProfileClient from "./ProfileClient";
 
-const page = () => {
-  return (
-    <div>page</div>
-  )
+export default function Page() {
+  return <ProfileClient />;
 }
-
-export default page
