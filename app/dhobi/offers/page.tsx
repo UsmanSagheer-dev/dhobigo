@@ -1,12 +1,45 @@
-'use client';
+"use client";
 import Button from "@/component/Button";
 import { RefreshCw } from "lucide-react";
-import React, { useState } from "react";
+import { useState } from "react";
 import OfferCard from "../components/OfferCard";
-import IMAGES from "@/public/assets/images";
+import CounterModal from "../components/CounterModal";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "@/store";
+import { Offer } from "@/types/types";
+import { acceptOffer, selectPending, selectAccepted, updateOffer } from "@/store/slices/offersSlice";
 
 const Offers = () => {
   const [tab, setTab] = useState<"pending" | "accepted">("pending");
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const pendingOffers = useSelector((state: RootState) => selectPending(state)) as Offer[];
+  const acceptedOffers = useSelector((state: RootState) => selectAccepted(state)) as Offer[];
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedOffer, setSelectedOffer] = useState<Offer | null>(null);
+
+  function handleAccept(id: string) {
+    dispatch(acceptOffer(id));
+    setTab("accepted");
+  }
+
+  function handleCounter(id: string) {
+    const o = pendingOffers.find((p) => p.id === id) ?? null;
+    setSelectedOffer(o);
+    setModalOpen(true);
+  }
+
+  function handleSendCounter(amount: number) {
+    if (!selectedOffer) return;
+    // create updated offer with new yourRate (or other field as needed)
+    const updated: Offer = { ...selectedOffer, yourRate: amount };
+    dispatch(updateOffer(updated));
+    setModalOpen(false);
+    setSelectedOffer(null);
+    setTab("pending");
+  }
 
   return (
     <div className="p-5 gap-2">
@@ -21,7 +54,6 @@ const Offers = () => {
         <Button title="Refresh" icon={<RefreshCw />} />
       </div>
 
-      {/* Tabs section */}
       <div>
         <nav className="flex items-center gap-8 border-b border-gray-200 dark:border-gray-700">
           <Button
@@ -33,7 +65,7 @@ const Offers = () => {
                 : "text-gray-600 dark:text-gray-300"
             }`}
           >
-            <span>Pending (2)</span>
+            <span>Pending ({pendingOffers.length})</span>
           </Button>
 
           <Button
@@ -45,48 +77,51 @@ const Offers = () => {
                 : "text-gray-600 dark:text-gray-300"
             }`}
           >
-            Accepted (0)
+            Accepted ({acceptedOffers.length})
           </Button>
         </nav>
 
         <div className="mt-6">
           {tab === "pending" ? (
             <div className="space-y-3">
-              {/* Replace these placeholders with real offer cards when data is available */}
-              <OfferCard
-                avatarUrl={IMAGES.usman.src}
-                orderId="Order #12345"
-                name="Ali Ahmed"
-                service="Wash Only"
-                pickupTime="Today, 5:00 PM"
-                distance="1.8 km"
-                weight="3 kg"
-                customerOffer={250}
-                yourRate={280}
-                timeRemaining="7:17"
-                onAccept={() => console.log('Accepted order #12345')}
-                onCounter={() => console.log('Counter offer for #12345')}
-              />
-
-              <OfferCard
-                orderId="Order #12346"
-                name="Sara Khan"
-                service="Wash & Fold"
-                pickupTime="Tomorrow, 10:00 AM"
-                distance="2.4 km"
-                weight="5 kg"
-                customerOffer={300}
-                yourRate={320}
-                timeRemaining="4:05"
-                onAccept={() => console.log('Accepted order #12346')}
-                onCounter={() => console.log('Counter offer for #12346')}
-              />
+              {pendingOffers.length === 0 ? (
+                <div className="p-6 text-sm text-(--textSecondary) text-center">No offer at this time</div>
+              ) : (
+                pendingOffers.map((o) => (
+                  <OfferCard
+                    key={o.id}
+                    {...o}
+                    onAccept={() => handleAccept(o.id)}
+                    onCounter={() => handleCounter(o.id)}
+                  />
+                ))
+              )}
             </div>
           ) : (
-            <div className="p-6 text-sm text-(--textSecondary)">No accepted offers yet.</div>
+            <div className="space-y-3">
+              {acceptedOffers.length === 0 ? (
+                <div className="p-6 text-sm text-(--textSecondary)">No accepted offers yet.</div>
+              ) : (
+                acceptedOffers.map((o) => (
+                  <OfferCard
+                    key={o.id}
+                    {...o}
+                    onAccept={() => {}}
+                    onCounter={() => {}}
+                  />
+                ))
+              )}
+            </div>
           )}
         </div>
       </div>
+      
+      <CounterModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        offer={selectedOffer}
+        onSend={handleSendCounter}
+      />
     </div>
   );
 };
