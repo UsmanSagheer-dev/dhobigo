@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowLeft, } from 'lucide-react'
+import OrderProgress from '@/app/dhobi/components/OrderProgress';
 export default function LaundryProgress() {
   const orders =
   {
@@ -38,9 +39,7 @@ export default function LaundryProgress() {
           <p className='text-[var(--textColor)]'>{orders.customerName}</p>
         </div>
       </div>
-      <div className='flex justify-between gap-2 bg-[var(--foreground)] p-4 rounded-lg'>
-        
-      </div>
+      <OrderProgress  />  
     </div>
   )
 }
