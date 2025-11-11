@@ -24,7 +24,7 @@ export default function Button({
   return (
     <button
       {...rest}
-      className={`${variant === "text" ? baseText : baseSolid} ${className}`}
+      className={`${variant === "text" ? baseText : baseSolid} ${className}` }
     >
       {icon && <span className="mr-2 flex items-center">{icon}</span>}
       {label && <span className="whitespace-nowrap">{label}</span>}

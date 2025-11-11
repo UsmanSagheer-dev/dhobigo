@@ -1,5 +1,6 @@
 import React from 'react'
 import DhobiShell from './DhobiShell'
+import ReduxProvider from './ReduxProvider'
 
 export const metadata = {
   title: 'Dhobi',
@@ -7,7 +8,9 @@ export const metadata = {
 
 export default function DhobiLayout({ children }: { children: React.ReactNode }) {
   return (
-    // DhobiShell is a client component that handles responsive sidebar + header
-    <DhobiShell>{children}</DhobiShell>
+    // wrap DhobiShell with Redux provider so all dhobi pages can access the store
+    <ReduxProvider>
+      <DhobiShell>{children}</DhobiShell>
+    </ReduxProvider>
   )
 }
