@@ -1,23 +1,14 @@
+'use client';
+import React, {use} from 'react';
+import { useSelector } from 'react-redux';
 import Link from 'next/link'
 import { ArrowLeft, } from 'lucide-react'
 import OrderProgress from '@/app/dhobi/components/OrderProgress';
-export default function LaundryProgress() {
-  const orders =
-  {
-    orderId: "12345",
-    customerPhoto:
-      "https://res.cloudinary.com/dcli1vwir/image/upload/v1759141920/z8vsizsmp7ysh4jhhgjv.jpg",
-    customerName: "John Doe",
-    customerRating: "4.5",
-    customerAddress: "Apartment 45, Gulshan-e-Iqbal, Karachi",
-    customerDistance: "1.6",
-    orderWeight: "1",
-    totalItems: "5",
-    serviceType: "Wash & Iron",
-    scheduledPickup: "Today, 3:00 PM - 5:00 PM",
-    scheduledDeadline: "Tomorrow, 3:00 PM - 5:00 PM",
-    totalAmount: "500",
-  };
+export default function LaundryProgress({ params }: { params: any}) {
+   const OrderDetails: any = use(params);
+  const ordertobePickedUpId = Number(OrderDetails.orderId);
+   const ordersFetched: Array<any> = useSelector((state: any) => state.orders.orders);
+  const order = ordersFetched.find((o: any) => o.orderId === ordertobePickedUpId);
   return (
     <div className="p-5 flex flex-col gap-2">
       <div className='flex justify-start items-center gap-4 text-[var(--textColor)] text-lg  '>
@@ -32,14 +23,14 @@ export default function LaundryProgress() {
       <div className='flex justify-between gap-2 bg-[var(--foreground)] p-4 rounded-lg'>
          <div>
           <p className='text-sm text-[var(--textSecondary)]'>#Order ID</p>
-          <p className='text-[var(--textColor)]'>{orders.orderId}</p>
+          <p className='text-[var(--textColor)]'>{order.orderId}</p>
         </div>
         <div>
           <p className='text-sm text-[var(--textSecondary)]'>Customer</p>
-          <p className='text-[var(--textColor)]'>{orders.customerName}</p>
+          <p className='text-[var(--textColor)]'>{order.customerName}</p>
         </div>
       </div>
-      <OrderProgress  />  
+      <OrderProgress order={order} />  
     </div>
   )
 }

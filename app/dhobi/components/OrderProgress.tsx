@@ -1,8 +1,9 @@
+
 import {Anvil, Check,CheckCircle, PackageOpen, WashingMachine, Wind, } from 'lucide-react';
 import OrderStatusSelection from './OrderStatusSelection';
 import Button from '@/component/Button';
 
-export default function OrderProgress() {
+export default function OrderProgress({ order }: { order: any }) {
     const orderStatus = [
         {
             heading: "Received",
@@ -51,6 +52,7 @@ export default function OrderProgress() {
                         heading={status.heading}
                         urduHeading={status.urduHeading}
                         icon={status.icon}
+                        order={order}
                     />
                 ))}
             </div>
