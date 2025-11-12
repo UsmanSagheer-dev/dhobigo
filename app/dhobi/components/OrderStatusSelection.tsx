@@ -1,14 +1,21 @@
+'use client';
+import { useState } from 'react';
 import { Anvil, Check, CheckCircle, PackageOpen, WashingMachine, Wind, } from 'lucide-react';
 
 type Props = {
     heading: string;
     urduHeading: string;
     icon: React.ReactNode;
+    order: any;
 }
 
-export default function OrderStatusSelection({ heading, urduHeading, icon }: Props) {
+export default function OrderStatusSelection({ heading, urduHeading, icon, order }: Props) {
+  
+    const handlestatusclick = () => {
+        console.log(`${heading} clicked`);
+    }
     return (
-        <div className='flex justify-between items-center bg-[var(--background)] p-4 rounded-lg w-full cursor-pointer hover:shadow-md'>
+        <div onClick={handlestatusclick} className='flex justify-between items-center bg-[var(--background)] p-4 rounded-lg w-full cursor-pointer hover:shadow-md'>
             <div className='flex justify-start items-center gap-2'>
                 <div className='flex justify-center items-center w-11 h-11 rounded-full text-[var(--textSecondary)] bg-[var(--textSecondary)]/20'>
                     {icon}

@@ -1,3 +1,20 @@
+ 
+export type Order = {
+  orderId: number;
+  customerPhoto: string;
+  customerName: string;
+  customerRating: number;
+  customerAddress: string;
+  customerDistance: number;
+  orderWeight: number;
+  totalItems: number;
+  serviceType: string;
+  scheduledPickup: string;
+  scheduledDeadline: string;
+  totalAmount: number;
+  status: String;
+};
+
 export type Offer = {
   id: string;
   orderId: string;
