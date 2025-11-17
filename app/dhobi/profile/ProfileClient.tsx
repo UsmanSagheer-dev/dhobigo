@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/component/Button";
+import Button from "@/components/Button";
 import { useState } from "react";
 
 import { useSelector } from "react-redux";

@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import Header from '../../component/Header'
+import Header from '../../components/Header'
 import Sidebar from './components/Sidebar'
 import styles from './dhobi-shell.module.css'
 import BottomTab from './BottomTab'

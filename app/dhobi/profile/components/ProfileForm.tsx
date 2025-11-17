@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import ProfileInput from "./ProfileInput";
-import Button from "@/component/Button";
+import Button from "@/components/Button";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "@/store";
 import {

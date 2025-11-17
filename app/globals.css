@@ -60,3 +60,68 @@ body {
 
 .muted { color: var(--textSecondary); }
 
+
+
+/* Global styles inject kar do ek baar */
+
+.custom-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.custom-input-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.custom-input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px 14px;
+  background-color: white;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.custom-input-wrapper:focus-within {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.custom-input-icon {
+  color: #6b7280;
+  font-size: 1.25rem;
+  margin-right: 10px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.custom-input-field {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: transparent;
+  color: #111;
+}
+
+.custom-input-field.has-icon {
+  padding-left: 4px; /* icon ke baad thoda space */
+}
+
+.custom-input-field::placeholder {
+  color: #9ca3af;
+}
+
+/* Optional: hover effect */
+.custom-input-wrapper:hover {
+  border-color: #9ca3af;
+}
+
