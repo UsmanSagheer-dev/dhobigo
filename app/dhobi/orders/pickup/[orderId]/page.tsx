@@ -1,6 +1,6 @@
 'use client';
-import Button from '@/component/Button'
-import Input from '@/component/Input';
+import Button from '@/components/Button'
+import Input from '@/components/Input';
 import { ArrowLeft, CameraIcon, MapPin, Navigation, QrCode } from 'lucide-react'
 import React, {use} from 'react';
 import { useSelector } from 'react-redux';

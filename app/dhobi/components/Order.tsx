@@ -1,4 +1,4 @@
-import Button from "@/component/Button";
+import Button from "@/components/Button";
 import { MapPin, MessageSquareMore, Navigation, Phone, Star, } from "lucide-react";
 import Link from 'next/link'
 import OrderStatus from "./OrderStatus";

@@ -1,7 +1,7 @@
 
 import {Anvil, Check,CheckCircle, PackageOpen, WashingMachine, Wind, } from 'lucide-react';
 import OrderStatusSelection from './OrderStatusSelection';
-import Button from '@/component/Button';
+import Button from '@/components/Button';
 
 export default function OrderProgress({ order }: { order: any }) {
     const orderStatus = [

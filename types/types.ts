@@ -72,3 +72,12 @@ export interface CustomInputProps {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   className?: string;
 }
+
+export interface RegisterForm {
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+  confirmPassword: string;
+}
+

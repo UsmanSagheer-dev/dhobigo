@@ -41,7 +41,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
           type={inputType}
           title={title}
           className={clsx(
-            "w-full h-12 px-4 pr-12 rounded-lg border border-gray-300 bg-gray-100 text-gray-900",
+            "w-full h-12 px-4 pr-12 rounded-lg border border-gray-300  text-black",
             "placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all",
             icon ? "pl-12" : "pl-4",
             inputProps?.className

@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Offer } from "@/types/types";
-import Button from "@/component/Button";
+import Button from "@/components/Button";
 
 type Props = {
   isOpen: boolean;
