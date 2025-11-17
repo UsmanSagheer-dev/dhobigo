@@ -1,7 +1,7 @@
 'use client';
 
 import { MapPin, Clock, Package } from 'lucide-react';
-import { useCustomerDashboard } from './hook/useCustomerDashboard';
+import { useCustomerDashboard } from '../../../hooks/useCustomerDashboard';
 
 export default function CustomerDashboard() {
   const { user, orders, loading, handleLogout } = useCustomerDashboard();
