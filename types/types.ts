@@ -1,4 +1,3 @@
- 
 export type Order = {
   orderId: number;
   customerPhoto: string;
@@ -30,7 +29,6 @@ export type Offer = {
   status: "pending" | "accepted";
 };
 
-
 export type OfferCardProps = {
   orderId?: string;
   name?: string;
@@ -52,12 +50,11 @@ export type PayoutHistoryItemProps = {
   orders: number;
   amount: number;
   status?: "Paid" | "Pending";
-  
 };
 
 export type Props = {
   label: string;
-  labelSecondary?: string; 
+  labelSecondary?: string;
   value?: string;
   placeholder?: string;
   onChange?: (v: string) => void;
@@ -66,3 +63,12 @@ export type Props = {
   type?: string;
   name?: string;
 };
+
+export interface CustomInputProps {
+  label?: string;
+  title?: string;
+  icon?: React.ReactNode;
+  showPasswordToggle?: boolean;
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  className?: string;
+}
