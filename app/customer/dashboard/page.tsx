@@ -1,94 +1,22 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { MapPin, Clock, Package } from 'lucide-react';
-
-interface User {
-  name: string;
-  email: string;
-  phone: string;
-}
-
-interface Order {
-  id: string;
-  provider: string;
-  status: string;
-  createdAt: string;
-}
+import { useCustomerDashboard } from './hook/useCustomerDashboard';
 
 export default function CustomerDashboard() {
-  const router = useRouter();
-  const [user, setUser] = useState<User | null>(null);
-  const [orders, setOrders] = useState<Order[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { user, orders, loading, handleLogout } = useCustomerDashboard();
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      router.push('/auth/login');
-      return;
-    }
+  // if (loading) {
+  //   return (
+  //     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+  //       <div className="text-xl text-gray-600">Loading your dashboard...</div>
+  //     </div>
+  //   );
+  // }
 
-    fetchUserData(token);
-    fetchOrders(token);
-  }, [router]);
-
-  const fetchUserData = async (token: string) => {
-    try {
-      const response = await fetch('/api/user/profile', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setUser(data.user);
-      } else {
-        localStorage.removeItem('token');
-        router.push('/auth/login');
-      }
-    } catch (err) {
-      console.error('Failed to fetch user data');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchOrders = async (token: string) => {
-    try {
-      const response = await fetch('/api/orders', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setOrders(data.orders || []);
-      }
-    } catch (err) {
-      console.error('Failed to fetch orders');
-    }
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    router.push('/');
-  };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-xl text-gray-600">Loading your dashboard...</div>
-      </div>
-    );
-  }
-
-  if (!user) {
-    return null; // Redirected already
-  }
+  // if (!user) {
+  //   return null; // Redirected already
+  // }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -96,7 +24,7 @@ export default function CustomerDashboard() {
       <div className="bg-indigo-600 text-white p-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold">Welcome, {user.name}!</h1>
+            <h1 className="text-3xl font-bold">Welcome, usman!</h1>
             <p className="text-indigo-200">Customer Dashboard</p>
           </div>
           <button

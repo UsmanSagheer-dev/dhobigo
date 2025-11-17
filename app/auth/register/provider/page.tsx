@@ -1,6 +1,6 @@
 'use client';
 
-import { useProviderApplication } from './hook/useProviderApplication';
+import { useProviderApplication } from '../../../../hooks/useProviderApplication';
 import { ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';

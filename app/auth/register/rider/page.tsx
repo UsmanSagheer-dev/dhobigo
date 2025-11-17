@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import CustomInput from "@/components/CustomInput";
 import Button from "@/components/Button";
-import { useRiderApplication } from "./hook/useRiderApplication";
+import { useRiderApplication } from "../../../../hooks/useRiderApplication";
 
 export default function RiderApplication() {
   const {
