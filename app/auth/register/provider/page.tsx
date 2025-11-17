@@ -1,105 +1,43 @@
 'use client';
 
-import { useState } from 'react';
+import { useProviderApplication } from './hook/useProviderApplication';
+import { ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-
-interface FormData {
-  // Personal Info
-  name: string;
-  email: string;
-  phone: string;
-  password: string;
-  confirmPassword: string;
-
-  // Shop Details
-  shopName: string;
-  shopAddress: string;
-  latitude: string;
-  longitude: string;
-
-  // Documents
-  cnicFront: File | null;
-  cnicBack: File | null;
-  shopPhotos: File[];
-
-  // Services & Experience
-  services: string[];
-  experience: string;
-
-  // Bank Info
-  bankName: string;
-  accountNumber: string;
-  accountTitle: string;
-}
+import CustomInput from '@/components/CustomInput';
 
 export default function ProviderApplication() {
+  const {
+    step,
+    formData,
+    setFormData,
+    loading,
+    error,
+    serviceOptions,
+    handleServiceToggle,
+    handleFileChange,
+    nextStep,
+    prevStep,
+  } = useProviderApplication();
+
   const router = useRouter();
-  const [step, setStep] = useState<number>(1);
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    phone: '',
-    password: '',
-    confirmPassword: '',
-    shopName: '',
-    shopAddress: '',
-    latitude: '',
-    longitude: '',
-    cnicFront: null,
-    cnicBack: null,
-    shopPhotos: [],
-    services: [],
-    experience: '',
-    bankName: '',
-    accountNumber: '',
-    accountTitle: '',
-  });
-
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
-
-  const serviceOptions: string[] = ['Wash', 'Dry Clean', 'Iron', 'Fold', 'Express Service'];
-
-  const handleServiceToggle = (service: string): void => {
-    setFormData((prev) => ({
-      ...prev,
-      services: prev.services.includes(service)
-        ? prev.services.filter((s) => s !== service)
-        : [...prev.services, service],
-    }));
-  };
-
-  const handleFileChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    field: 'cnicFront' | 'cnicBack' | 'shopPhotos'
-  ): void => {
-    const files = e.target.files;
-    if (!files) return;
-
-    if (field === 'shopPhotos') {
-      setFormData((prev) => ({ ...prev, shopPhotos: Array.from(files) }));
-    } else {
-      setFormData((prev) => ({ ...prev, [field]: files[0] }));
-    }
-  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    setError('');
+    // setError('');
 
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      // setError('Passwords do not match');
       return;
     }
 
-    setLoading(true);
+    // setLoading(true);
 
     try {
       const formDataToSend = new FormData();
 
       // Append text fields
-      (Object.keys(formData) as (keyof FormData)[]).forEach((key) => {
+      (Object.keys(formData) as (keyof typeof formData)[]).forEach((key) => {
         if (
           key !== 'shopPhotos' &&
           key !== 'cnicFront' &&
@@ -130,21 +68,13 @@ export default function ProviderApplication() {
       if (response.ok) {
         router.push('/auth/application-submitted?role=provider');
       } else {
-        setError(data.message || 'Application submission failed');
+        // setError(data.message || 'Application submission failed');
       }
     } catch (err) {
-      setError('Something went wrong. Please try again.');
+      // setError('Something went wrong. Please try again.');
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
-  };
-
-  const nextStep = (): void => {
-    if (step < 4) setStep(step + 1);
-  };
-
-  const prevStep = (): void => {
-    if (step > 1) setStep(step - 1);
   };
 
   return (
@@ -169,66 +99,74 @@ export default function ProviderApplication() {
           <div className="bg-red-100 text-red-700 p-3 rounded-lg mb-4">{error}</div>
         )}
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           {/* Step 1: Personal Information */}
           {step === 1 && (
             <div>
               <h3 className="text-xl font-bold mb-4">Personal Information</h3>
-              <div className="mb-4">
-                <label className="block text-gray-700 font-semibold mb-2">Full Name</label>
-                <input
-                  type="text"
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                />
-              </div>
 
-              <div className="mb-4">
-                <label className="block text-gray-700 font-semibold mb-2">Email</label>
-                <input
-                  type="email"
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                />
-              </div>
+              <CustomInput
+                label="Full Name"
+                inputProps={{
+                  type: 'text',
+                  required: true,
+                  className:
+                    'w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500',
+                  value: formData.name,
+                  onChange: (e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, name: e.target.value }),
+                }}
+              />
 
-              <div className="mb-4">
-                <label className="block text-gray-700 font-semibold mb-2">Phone Number</label>
-                <input
-                  type="tel"
-                  required
-                  placeholder="03001234567"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                />
-              </div>
+              <CustomInput
+                label="Email"
+                inputProps={{
+                  type: 'email',
+                  required: true,
+                  className:
+                    'w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500',
+                  value: formData.email,
+                  onChange: (e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, email: e.target.value }),
+                }}
+              />
 
-              <div className="mb-4">
-                <label className="block text-gray-700 font-semibold mb-2">Password</label>
-                <input
-                  type="password"
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                  value={formData.password}
-                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                />
-              </div>
+              <CustomInput
+                label="Phone Number"
+                inputProps={{
+                  type: 'tel',
+                  required: true,
+                  placeholder: '03001234567',
+                  className:
+                    'w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500',
+                  value: formData.phone,
+                  onChange: (e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, phone: e.target.value }),
+                }}
+              />
 
-              <div className="mb-4">
-                <label className="block text-gray-700 font-semibold mb-2">Confirm Password</label>
-                <input
-                  type="password"
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                  value={formData.confirmPassword}
-                  onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                />
-              </div>
+              <CustomInput
+                label="Password"
+                showPasswordToggle={true}
+                inputProps={{
+                  type: 'password',
+                  required: true,
+                  className:
+                    'w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500',
+                  value: formData.password,
+                  onChange: (e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, password: e.target.value }),
+                }}
+              />
+
+              <CustomInput
+                label="Confirm Password"
+                showPasswordToggle={true}
+                inputProps={{
+                  type: 'password',
+                  required: true,
+                  className:
+                    'w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500',
+                  value: formData.confirmPassword,
+                  onChange: (e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, confirmPassword: e.target.value }),
+                }}
+              />
             </div>
           )}
 
@@ -236,16 +174,18 @@ export default function ProviderApplication() {
           {step === 2 && (
             <div>
               <h3 className="text-xl font-bold mb-4">Shop Details</h3>
-              <div className="mb-4">
-                <label className="block text-gray-700 font-semibold mb-2">Shop Name</label>
-                <input
-                  type="text"
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                  value={formData.shopName}
-                  onChange={(e) => setFormData({ ...formData, shopName: e.target.value })}
-                />
-              </div>
+
+              <CustomInput
+                label="Shop Name"
+                inputProps={{
+                  type: 'text',
+                  required: true,
+                  className:
+                    'w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500',
+                  value: formData.shopName,
+                  onChange: (e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, shopName: e.target.value }),
+                }}
+              />
 
               <div className="mb-4">
                 <label className="block text-gray-700 font-semibold mb-2">Shop Address</label>
@@ -258,47 +198,46 @@ export default function ProviderApplication() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label className="block text-gray-700 font-semibold mb-2">Latitude</label>
-                  <input
-                    type="text"
-                    placeholder="24.8607"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                    value={formData.latitude}
-                    onChange={(e) => setFormData({ ...formData, latitude: e.target.value })}
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-semibold mb-2">Longitude</label>
-                  <input
-                    type="text"
-                    placeholder="67.0011"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                    value={formData.longitude}
-                    onChange={(e) => setFormData({ ...formData, longitude: e.target.value })}
-                  />
-                </div>
-              </div>
+              <CustomInput
+                label="Latitude"
+                inputProps={{
+                  type: 'text',
+                  placeholder: '24.8607',
+                  className:
+                    'w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500',
+                  value: formData.latitude,
+                  onChange: (e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, latitude: e.target.value }),
+                }}
+              />
 
-              <div className="mb-4">
-                <label className="block text-gray-700 font-semibold mb-2">
-                  Shop Photos (3-5 images)
-                </label>
-                <input
-                  type="file"
-                  multiple
-                  accept="image/*"
-                  required={formData.shopPhotos.length < 3}
-                  className="w-full p-3 border border-gray-300 rounded-lg"
-                  onChange={(e) => handleFileChange(e, 'shopPhotos')}
-                />
-                {formData.shopPhotos.length > 0 && (
-                  <p className="text-sm text-gray-600 mt-2">
-                    {formData.shopPhotos.length} photo(s) selected
-                  </p>
-                )}
-              </div>
+              <CustomInput
+                label="Longitude"
+                inputProps={{
+                  type: 'text',
+                  placeholder: '67.0011',
+                  className:
+                    'w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500',
+                  value: formData.longitude,
+                  onChange: (e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, longitude: e.target.value }),
+                }}
+              />
+
+              <CustomInput
+                label="Shop Photos (3-5 images)"
+                inputProps={{
+                  type: 'file',
+                  multiple: true,
+                  accept: 'image/*',
+                  required: formData.shopPhotos.length < 3,
+                  className: 'w-full p-3 border border-gray-300 rounded-lg',
+                  onChange: (e: ChangeEvent<HTMLInputElement>) => handleFileChange(e, 'shopPhotos'),
+                }}
+              />
+              {formData.shopPhotos.length > 0 && (
+                <p className="text-sm text-gray-600 mt-2">
+                  {formData.shopPhotos.length} photo(s) selected
+                </p>
+              )}
             </div>
           )}
 
@@ -307,27 +246,27 @@ export default function ProviderApplication() {
             <div>
               <h3 className="text-xl font-bold mb-4">Documents & Services</h3>
 
-              <div className="mb-4">
-                <label className="block text-gray-700 font-semibold mb-2">CNIC Front</label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  required={!formData.cnicFront}
-                  className="w-full p-3 border border-gray-300 rounded-lg"
-                  onChange={(e) => handleFileChange(e, 'cnicFront')}
-                />
-              </div>
+              <CustomInput
+                label="CNIC Front"
+                inputProps={{
+                  type: 'file',
+                  accept: 'image/*',
+                  required: !formData.cnicFront,
+                  className: 'w-full p-3 border border-gray-300 rounded-lg',
+                  onChange: (e: ChangeEvent<HTMLInputElement>) => handleFileChange(e, 'cnicFront'),
+                }}
+              />
 
-              <div className="mb-4">
-                <label className="block text-gray-700 font-semibold mb-2">CNIC Back</label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  required={!formData.cnicBack}
-                  className="w-full p-3 border border-gray-300 rounded-lg"
-                  onChange={(e) => handleFileChange(e, 'cnicBack')}
-                />
-              </div>
+              <CustomInput
+                label="CNIC Back"
+                inputProps={{
+                  type: 'file',
+                  accept: 'image/*',
+                  required: !formData.cnicBack,
+                  className: 'w-full p-3 border border-gray-300 rounded-lg',
+                  onChange: (e: ChangeEvent<HTMLInputElement>) => handleFileChange(e, 'cnicBack'),
+                }}
+              />
 
               <div className="mb-4">
                 <label className="block text-gray-700 font-semibold mb-2">Services Offered</label>
@@ -349,17 +288,17 @@ export default function ProviderApplication() {
                 </div>
               </div>
 
-              <div className="mb-4">
-                <label className="block text-gray-700 font-semibold mb-2">Experience (Years)</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g., 5 years"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                  value={formData.experience}
-                  onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                />
-              </div>
+              <CustomInput
+                label="Experience (Years)"
+                inputProps={{
+                  type: 'text',
+                  required: true,
+                  placeholder: 'e.g., 5 years',
+                  className: 'w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500',
+                  value: formData.experience,
+                  onChange: (e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, experience: e.target.value }),
+                }}
+              />
             </div>
           )}
 
@@ -367,39 +306,39 @@ export default function ProviderApplication() {
           {step === 4 && (
             <div>
               <h3 className="text-xl font-bold mb-4">Bank Information</h3>
-              <div className="mb-4">
-                <label className="block text-gray-700 font-semibold mb-2">Bank Name</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g., HBL, UBL, MCB"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                  value={formData.bankName}
-                  onChange={(e) => setFormData({ ...formData, bankName: e.target.value })}
-                />
-              </div>
+              <CustomInput
+                label="Bank Name"
+                inputProps={{
+                  type: 'text',
+                  required: true,
+                  placeholder: 'e.g., HBL, UBL, MCB',
+                  className: 'w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500',
+                  value: formData.bankName,
+                  onChange: (e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, bankName: e.target.value }),
+                }}
+              />
 
-              <div className="mb-4">
-                <label className="block text-gray-700 font-semibold mb-2">Account Number</label>
-                <input
-                  type="text"
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                  value={formData.accountNumber}
-                  onChange={(e) => setFormData({ ...formData, accountNumber: e.target.value })}
-                />
-              </div>
+              <CustomInput
+                label="Account Number"
+                inputProps={{
+                  type: 'text',
+                  required: true,
+                  className: 'w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500',
+                  value: formData.accountNumber,
+                  onChange: (e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, accountNumber: e.target.value }),
+                }}
+              />
 
-              <div className="mb-4">
-                <label className="block text-gray-700 font-semibold mb-2">Account Title</label>
-                <input
-                  type="text"
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                  value={formData.accountTitle}
-                  onChange={(e) => setFormData({ ...formData, accountTitle: e.target.value })}
-                />
-              </div>
+              <CustomInput
+                label="Account Title"
+                inputProps={{
+                  type: 'text',
+                  required: true,
+                  className: 'w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500',
+                  value: formData.accountTitle,
+                  onChange: (e: ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, accountTitle: e.target.value }),
+                }}
+              />
             </div>
           )}
 

@@ -81,3 +81,46 @@ export interface RegisterForm {
   confirmPassword: string;
 }
 
+
+export interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+  confirmPassword: string;
+  shopName: string;
+  shopAddress: string;
+  latitude: string;
+  longitude: string;
+  cnicFront: File | null;
+  cnicBack: File | null;
+  shopPhotos: File[];
+  services: string[];
+  experience: string;
+  bankName: string;
+  accountNumber: string;
+  accountTitle: string;
+}
+
+export interface FormDataRider {
+  // Personal Info
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+  confirmPassword: string;
+
+  // Documents
+  cnicFront: File | null;
+  cnicBack: File | null;
+  drivingLicense: File | null;
+
+  // Bike Details
+  bikeModel: string;
+  bikeNumber: string;
+  bikePhotos: File[];
+
+  // Coverage & Experience
+  coverageAreas: string[];
+  experience: string;
+}
