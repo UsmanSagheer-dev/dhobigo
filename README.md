@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+DhobiGo
 
-## Getting Started
+DhobiGo is Pakistan's first InDrive-style laundry marketplace, integrating real-time bidding, chat, and Hybrid Pickup and Delivery Services. It allows customers to post laundry requests, Dhobis to bid competitively, and verified riders to handle pickup/delivery.
 
-First, run the development server:
+Our Main Objectives
+Provide Customers with a cheap laundry service by introducing a real-time bidding system to provide them with different offers from different dhobis and a real-time chat system with a dhobi for negotiation and contact support regarding their clothes, with 100% traceability and laundry service at their doorsteps, by pickup and delivery of their clothes at their choice of location
+Increasing existing Dhobi’s sales by letting them serve throughout the whole city rather than a specific local area, by providing them with pickup/delivery services and providing them with a Dashboard for a Paperless store management & analytics tool.
+Empowering unemployed people to provide laundry services from their home (especially housewives) by becoming a dhobi on our platform through easy registration, or by becoming a rider for pickup/delivery services for our dhobis
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Problem Statements and Their Solutions:
+Customers pay too much for laundry because prices are fixed, non-transparent, and they have no way to compare or negotiate with local dhobis.
+Real-time bidding system lets multiple dhobis compete → customers see the lowest offers instantly.  In-app chat enables direct negotiation & support. 100% order tracking + doorstep pickup/delivery at user-chosen location.
+Traditional dhobis are stuck in one mohalla — they can’t reach customers across the city, lose orders to big chains, and waste time on manual record-keeping.
+City-wide reach via verified riders → dhobis serve the entire metro area. Paperless Dashboard with sales analytics, order history, and digital payments → zero paperwork, faster growth.
+Unemployed people (especially housewives) have laundry skills but no platform to earn from home.  Youth need flexible gig jobs but lack trusted opportunities
+Easy 5-minute registration to become a home-based dhobi (ideal for housewives). Become a verified rider → flexible pickup/delivery jobs with daily payouts.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Backend Repository Link:
+https://github.com/SherazDeveloper12/DhobiGo-Backend
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Contributor Links
+Sheraz
+https://github.com/SherazDeveloper12/
+Linkedin: https://www.linkedin.com/in/muhammad-sheraz-developer/
+Usamn Sagheer
+https://github.com/UsmanSagheer-dev/
+Linkedin: https://www.linkedin.com/in/usmandeveloper12/
