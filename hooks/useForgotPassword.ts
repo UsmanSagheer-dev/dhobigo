@@ -1,23 +1,11 @@
+import { ForgotPasswordFormData, UseForgotPasswordReturn } from "@/types/types";
 import { useState } from "react";
-
-interface ForgotPasswordFormData {
-  email: string;
-}
-
-interface UseForgotPasswordReturn {
-  formData: ForgotPasswordFormData;
-  setFormData: (data: ForgotPasswordFormData) => void;
-  loading: boolean;
-  error: string | null;
-  success: string | null;
-  handleSubmit: (e: React.FormEvent) => Promise<void>;
-}
 
 export const useForgotPassword = (): UseForgotPasswordReturn => {
   const [formData, setFormData] = useState<ForgotPasswordFormData>({
     email: "",
   });
-  
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -29,16 +17,26 @@ export const useForgotPassword = (): UseForgotPasswordReturn => {
     setSuccess(null);
 
     try {
-      // Dummy API call - replace with actual API
-      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API delay
-      
-      // Simulate success
-      console.log("Password reset email sent to:", formData.email);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      if (typeof window !== "undefined") {
+        try {
+          const mod = await import("@/utils/toast");
+          const fn = (mod &&
+            (mod.toast ??
+              mod.default ??
+              (typeof mod === "function" ? mod : undefined))) as
+            | ((msg: string) => void)
+            | undefined;
+          if (fn) fn(`Password reset email sent to: ${formData.email}`);
+        } catch (e) {
+          console.log("Password reset email sent to:", formData.email);
+        }
+      }
+
       setSuccess("Password reset link has been sent to your email address.");
-      
-      // Clear form after success
+
       setFormData({ email: "" });
-      
     } catch (err) {
       console.error("Forgot password error:", err);
       setError("Something went wrong. Please try again.");

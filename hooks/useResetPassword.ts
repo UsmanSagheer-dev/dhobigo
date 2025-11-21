@@ -1,19 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
-interface ResetPasswordFormData {
-  password: string;
-  confirmPassword: string;
-}
-
-interface UseResetPasswordReturn {
-  formData: ResetPasswordFormData;
-  setFormData: (data: ResetPasswordFormData) => void;
-  loading: boolean;
-  error: string | null;
-  success: string | null;
-  handleSubmit: (e: React.FormEvent) => Promise<void>;
-}
+import { ResetPasswordFormData, UseResetPasswordReturn } from "@/types/types";
 
 export const useResetPassword = (token: string): UseResetPasswordReturn => {
   const router = useRouter();
@@ -21,7 +8,7 @@ export const useResetPassword = (token: string): UseResetPasswordReturn => {
     password: "",
     confirmPassword: "",
   });
-  
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -47,22 +34,25 @@ export const useResetPassword = (token: string): UseResetPasswordReturn => {
 
     try {
       // Dummy API call - replace with actual API
-      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API delay
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate API delay
+
       // Simulate success
       console.log("Password reset successful for token:", token);
       console.log("New password:", formData.password);
-      
-      setSuccess("Password has been reset successfully! Redirecting to login...");
-      
+
+      setSuccess(
+        "Password has been reset successfully! Redirecting to login..."
+      );
+
       // Redirect to login after 2 seconds
       setTimeout(() => {
         router.push("/auth/login");
       }, 2000);
-      
     } catch (err) {
       console.error("Reset password error:", err);
-      setError("Something went wrong. Please try again or request a new reset link.");
+      setError(
+        "Something went wrong. Please try again or request a new reset link."
+      );
     } finally {
       setLoading(false);
     }

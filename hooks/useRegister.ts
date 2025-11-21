@@ -1,20 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
-interface RegisterFormData {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
-
-interface UseRegisterReturn {
-  formData: RegisterFormData;
-  setFormData: (data: RegisterFormData) => void;
-  loading: boolean;
-  error: string | null;
-  handleSubmit: (e: React.FormEvent) => Promise<void>;
-}
+import { RegisterFormData, UseRegisterReturn } from "@/types/types";
 
 export const useRegister = (): UseRegisterReturn => {
   const router = useRouter();
@@ -24,7 +10,7 @@ export const useRegister = (): UseRegisterReturn => {
     password: "",
     confirmPassword: "",
   });
-  
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -53,19 +39,16 @@ export const useRegister = (): UseRegisterReturn => {
     }
 
     try {
-      // Dummy API call - replace with actual API
-      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API delay
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       // Simulate success
       console.log("Registration successful:", {
         name: formData.name,
         email: formData.email,
         password: formData.password,
       });
-      
-      // Redirect to login page after successful registration
+
       router.push("/auth/login");
-      
     } catch (err) {
       console.error("Registration error:", err);
       setError("Something went wrong. Please try again.");

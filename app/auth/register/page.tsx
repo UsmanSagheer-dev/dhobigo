@@ -4,6 +4,7 @@ import { Mail, Lock, User, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import CustomInput from "@/components/CustomInput";
 import { useRegister } from "@/hooks/useRegister";
+import Button from "@/components/Button";
 
 export default function RegisterPage() {
   const { formData, setFormData, loading, error, handleSubmit } = useRegister();
@@ -79,13 +80,13 @@ export default function RegisterPage() {
           }}
         />
 
-        <button
+        <Button
           type="submit"
           disabled={loading}
           className="flex-1 bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 disabled:opacity-50"
         >
           {loading ? "Creating..." : "Sign Up"}
-        </button>
+        </Button>
       </form>
 
       <div className="mt-6 text-center">
