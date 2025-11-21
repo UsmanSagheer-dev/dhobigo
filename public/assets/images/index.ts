@@ -1,5 +1,7 @@
 import Image from './usman.jpeg'
+import DhobiRegister from './dhobisignup.jpg'
 const IMAGES = {
-  usman: Image
+  usman: Image,
+  dhobiRegister: DhobiRegister
 }
 export default IMAGES

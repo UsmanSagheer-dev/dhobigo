@@ -41,11 +41,22 @@ const CustomInput: React.FC<CustomInputProps> = ({
           type={inputType}
           title={title}
           className={clsx(
-            "w-full h-12 px-4 pr-12 rounded-lg border border-gray-300  text-black",
-            "placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all",
+            "w-full h-12 px-4 pr-12 rounded-lg border border-gray-300 bg-white text-black",
+            "focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all",
+            "[&:-webkit-autofill]:!bg-white [&:-webkit-autofill]:!text-black",
+            "[&:-webkit-autofill:hover]:!bg-white [&:-webkit-autofill:hover]:!text-black",
+            "[&:-webkit-autofill:focus]:!bg-white [&:-webkit-autofill:focus]:!text-black",
+            "[&:-webkit-autofill:active]:!bg-white [&:-webkit-autofill:active]:!text-black",
+            "[&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_white]",
+            "[&:-webkit-autofill]:[-webkit-text-fill-color:black]",
             icon ? "pl-12" : "pl-4",
             inputProps?.className
           )}
+          style={{
+            backgroundColor: 'white !important',
+            color: 'black !important',
+            WebkitTextFillColor: 'black !important'
+          }}
         />
 
         {showPasswordToggle && (
