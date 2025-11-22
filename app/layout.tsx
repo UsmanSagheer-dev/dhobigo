@@ -2,34 +2,21 @@ import React from "react";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import type { Metadata } from "next";
-import GlobalReduxProvider from "./providers/GlobalReduxProvider";
+import GlobalReduxProvider from './providers/GlobalReduxProvider';
 
 export const metadata: Metadata = {
   title: {
     default: "DhobiGo - Daam Aapka, Dhobi Humara",
-    template: "%s | DhobiGo",
+    template: "%s | DhobiGo"
   },
   description:
     "DhobiGo is Pakistan's first InDrive-style laundry marketplace, integrating real-time bidding, chat, and Hybrid Pickup and Delivery Services. It allows customers to post laundry requests, Dhobis to bid competitively, and verified riders to handle pickup/delivery.",
   keywords: [
-    "DhobiGo",
-    "Laundry Marketplace",
-    "Laundry Service",
-    "Laundry Pickup and Delivery",
-    "Dhobi",
-    "laundry near me",
-    "dry cleaning",
-    "Laundry Services Pakistan",
-    "ironing service",
-    "online dhobi",
-    "wash and fold",
-    "laundry app",
-    "laundry delivery",
-    "affordable laundry",
-    "eco-friendly laundry",
-    "same-day laundry service",
-    "laundry offers",
-    "laundry discounts",
+    "DhobiGo", "Laundry Marketplace", "Laundry Service", "Laundry Pickup and Delivery",
+    "Dhobi", "laundry near me", "dry cleaning", "Laundry Services Pakistan",
+    "ironing service", "online dhobi", "wash and fold", "laundry app", "laundry delivery",
+    "affordable laundry", "eco-friendly laundry", "same-day laundry service",
+    "laundry offers", "laundry discounts"
   ],
   openGraph: {
     title: "DhobiGo - Daam Aapka, Dhobi Humara",
@@ -64,10 +51,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function layout({ children }: { children: React.ReactNode }) {
+export default function layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <body className="antialiased font-english">
+      <body className='antialiased font-english'>
         <GlobalReduxProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}

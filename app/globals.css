@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
 @import "tailwindcss";
 
 /*
@@ -6,37 +8,42 @@
   the class before hydration to avoid a flash-of-unstyled-theme (FOUC).
 */
 /* Local font registration - using font files placed in public/assets/min/fonts */
-@font-face {
-  font-family: 'Noto Nastaliq Urdu';
-  src: url('/assets/min/fonts/Roboto_Condensed-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  padding: 0;
- 
-}
+
+
 @custom-variant dark (&:where(.dark, .dark *));
-:root {
-  --primary: #2563eb;
-  --secondary: #00c950;
-  --background: #eef2ff;
-  --foreground: white; /* gray-900 */
-  --textColor: #000000; /* gray-500 */
-  --textSecondary: #768497; /* gray-500 */
-  --border: #e5e7eb; /* gray-200 */
-  --accent: #2563eb; /* blue-600 */
-  /* Use the local Noto Nastaliq Urdu font first, fall back to Geist/ system fonts */
-  --font-sans: 'Noto Nastaliq Urdu', var(--font-geist-sans, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial);
+
+@theme {
+  --color-primary: #2563eb;
+  --color-primaryhover: #3b82f6;
+  --color-secondary: #00c950;
+  --color-secondaryhover: #16a34a;
+  --color-tertiary: #9f9fa9;
+   --color-tertiaryhover: #a3a3b0;
+  --color-background: #eef2ff;
+  --color-foreground: white;
+  --color-textColor: #000000;
+  --color-textSecondary: #768497;
+  --color-border: #e5e7eb;
+  --color-borderhover: #1e293b;
+  --color-accent: #2563eb;
+  --font-urdu: 'Noto Nastaliq Urdu', serif;
+  --font-english: 'Roboto Condensed', sans-serif;
 }
 
 .dark {
-  --primary: #3b82f6;
-  --secondary: #22c55e;
-  --background: black; /* very dark blue/gray */
-  --foreground: #0f172b; /* light */
-  --textColor: white;
-   --textSecondary: #a6adb9;
-  --border: #1f2937;
-  --accent: #60a5fa;
+  --color-primary: #3b82f6;
+   --color-primaryhover: #2563eb;
+  --color-secondary: #16a34a;
+   --color-secondaryhover: #00c950;
+  --color-tertiary: #a3a3b0;
+  --color-tertiaryhover: #9f9fa9;
+  --color-background: #020617;
+  --color-foreground: #0f172a;
+  --color-textColor: #e2e8f0;
+  --color-textSecondary: #94a3b8;
+  --color-border: #1e293b;
+   --color-borderhover: #e5e7eb;
+  --color-accent: #60a5fa;
 }
 
 /* Provide a smooth color transition for theme changes */
@@ -45,21 +52,19 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--textColor);
-  font-family: var(--font-sans);
+  background: var(--color-background);
+  color: var(--color-textColor);
+ 
   transition: background-color 160ms ease, color 160ms ease;
 }
 
 /* Utility defaults for components that used hardcoded colors */
 .card {
-  background: var(--foreground);
-  border: 1px solid var(--border);
-  color: var(--textColor);
+  background: var(--color-foreground);
+  border: 1px solid var(--color-border);
+  color: var(--color-textColor);
 }
 
-.muted { color: var(--textSecondary); }
-
-
-
-
+.muted {
+  color: var(--color-textSecondary);
+}

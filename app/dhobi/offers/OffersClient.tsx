@@ -54,7 +54,7 @@ const OffersClient = () => {
       <div className="flex justify-between items-center mb-5">
         <div>
           <h1 className="text-[20px]">Customer Offers</h1>
-          <h1 className="text-(--textSecondary) dark:text-(--textSecondary)">
+          <h1 className="font-urdu text-textSecondary">
             کسٹمر آفرز
           </h1>
         </div>

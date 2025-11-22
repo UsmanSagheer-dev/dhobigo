@@ -75,7 +75,7 @@ export default function OfferCard({
           ) : (
             <div className="text-xs bg-blue-50 dark:bg-white/5 text-blue-700 dark:text-blue-300 rounded-lg p-4 text-right">
               <div className="text-sm font-medium">{timeRemaining}</div>
-              <div className="text-[10px] text-gray-600 dark:text-gray-300">
+              <div className="font-urdu text-[10px] text-gray-600 dark:text-gray-300">
                 باقی
               </div>
             </div>

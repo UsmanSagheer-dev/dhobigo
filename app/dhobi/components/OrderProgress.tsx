@@ -43,7 +43,7 @@ export default function OrderProgress({ order }: { order: any }) {
     ];
 
     return (
-        <div className='flex flex-col items-start justify-center gap-2 bg-[var(--foreground)] p-4 rounded-lg'>
+        <div className='flex flex-col items-start justify-center gap-2 bg-foreground p-4 rounded-lg'>
             <h2>Update Status / حیثیت اپ ڈیٹ کریں</h2>
             <div className='flex flex-col w-full gap-4'>
                 {orderStatus.map((status, index) => (
@@ -56,16 +56,16 @@ export default function OrderProgress({ order }: { order: any }) {
                     />
                 ))}
             </div>
-           <div className='flex flex-col w-full bg-[var(--background)] p-4 rounded-lg gap-2'>
-            <h3 className='text-[var(--textSecondary)]'>Additional Notes / نوٹس</h3>
+           <div className='flex flex-col w-full bg-background p-4 rounded-lg gap-2'>
+            <h3 className='text-textSecondary'>Additional Notes / نوٹس</h3>
             <textarea
-                className='w-full bg-[var(--foreground)] border border-[var(--borderColor)] rounded-lg p-2 text-[var(--textColor)]'
+                className='w-full bg-foreground border border-border rounded-lg p-2 text-textColor'
                 rows={4}
                 placeholder='Enter any additional notes here... / یہاں کوئی اضافی نوٹس درج کریں...'
             ></textarea>
            </div>
            <div className='w-full'>
-            <Button title="Add additional Note / نوٹ شامل کریں" className='w-full bg-[var(--primary)]/90 hover:bg-[var(--primary)] ' />
+            <Button title="Add additional Note / نوٹ شامل کریں" className='w-full bg-primary/90 hover:bg-primary ' />
            </div>
            
         </div>

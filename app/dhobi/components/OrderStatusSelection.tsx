@@ -15,17 +15,17 @@ export default function OrderStatusSelection({ heading, urduHeading, icon, order
         console.log(`${heading} clicked`);
     }
     return (
-        <div onClick={handlestatusclick} className='flex justify-between items-center bg-[var(--background)] p-4 rounded-lg w-full cursor-pointer hover:shadow-md'>
+        <div onClick={handlestatusclick} className='flex justify-between items-center bg-background p-4 rounded-lg w-full cursor-pointer hover:shadow-md'>
             <div className='flex justify-start items-center gap-2'>
-                <div className='flex justify-center items-center w-11 h-11 rounded-full text-[var(--textSecondary)] bg-[var(--textSecondary)]/20'>
+                <div className='flex justify-center items-center w-11 h-11 rounded-full text-textSecondary bg-textSecondary/20'>
                     {icon}
                 </div>
                 <div>
                     <h3>{heading ? heading : ''}</h3>
-                    <h3 className='text-[var(--textSecondary)]'>{urduHeading ? urduHeading : ''}</h3>
+                    <h3 className='text-textSecondary'>{urduHeading ? urduHeading : ''}</h3>
                 </div>
             </div >
-            <div> <CheckCircle className='w-7 h-7 text-[var(--secondary)]' /></div>
+            <div> <CheckCircle className='w-7 h-7 text-secondary' /></div>
         </div>
     )
 }
