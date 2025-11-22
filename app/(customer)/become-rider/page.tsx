@@ -1,9 +1,12 @@
 import React from 'react'
+import ProtectedRoute from '@/components/ProtectedRoute'
 
 export default function BecomeRider() {
   return (
-    <div>
-      become rider page
-    </div>
+    <ProtectedRoute allowedRoles={["customer"]}>
+      <div>
+        Become Rider Page
+      </div>
+    </ProtectedRoute>
   )
 }

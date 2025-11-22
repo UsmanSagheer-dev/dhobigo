@@ -1,9 +1,12 @@
 
+import ProtectedRoute from '@/components/ProtectedRoute'
 
 export default function Profile() {
   return (
-    <div>
-        Profile Settings Page
-    </div>
+    <ProtectedRoute allowedRoles={["customer"]}>
+      <div>
+          Profile Settings Page
+      </div>
+    </ProtectedRoute>
   )
 }

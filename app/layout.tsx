@@ -1,20 +1,40 @@
-import React from 'react'
+import React from "react";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import type { Metadata } from "next";
-import GlobalReduxProvider from './providers/GlobalReduxProvider';
+import GlobalReduxProvider from "./providers/GlobalReduxProvider";
+
 export const metadata: Metadata = {
   title: {
-    default: "DhobiGo - Daam Aapka, Dhobi Humara",  // Default title
-    template: "%s | DhobiGo" // title for other pages
+    default: "DhobiGo - Daam Aapka, Dhobi Humara",
+    template: "%s | DhobiGo",
   },
-  description: "DhobiGo is Pakistan's first InDrive-style laundry marketplace, integrating real-time bidding, chat, and Hybrid Pickup and Delivery Services. It allows customers to post laundry requests, Dhobis to bid competitively, and verified riders to handle pickup/delivery.",
-  // keywords for SEO
-  keywords: ["DhobiGo", "Laundry Marketplace", "Laundry Service", "Laundry Pickup and Delivery", "Dhobi", "laundry near me", "dry cleaning", "Laundry Services Pakistan", "ironing service", "online dhobi", "wash and fold", "laundry app", "laundry delivery", "affordable laundry", "eco-friendly laundry", "same-day laundry service", "laundry offers", "laundry discounts"],
-  // open graph for social media sharing
+  description:
+    "DhobiGo is Pakistan's first InDrive-style laundry marketplace, integrating real-time bidding, chat, and Hybrid Pickup and Delivery Services. It allows customers to post laundry requests, Dhobis to bid competitively, and verified riders to handle pickup/delivery.",
+  keywords: [
+    "DhobiGo",
+    "Laundry Marketplace",
+    "Laundry Service",
+    "Laundry Pickup and Delivery",
+    "Dhobi",
+    "laundry near me",
+    "dry cleaning",
+    "Laundry Services Pakistan",
+    "ironing service",
+    "online dhobi",
+    "wash and fold",
+    "laundry app",
+    "laundry delivery",
+    "affordable laundry",
+    "eco-friendly laundry",
+    "same-day laundry service",
+    "laundry offers",
+    "laundry discounts",
+  ],
   openGraph: {
     title: "DhobiGo - Daam Aapka, Dhobi Humara",
-    description: "DhobiGo is Pakistan's first InDrive-style laundry marketplace, integrating real-time bidding, chat, and Hybrid Pickup and Delivery Services. It allows customers to post laundry requests, Dhobis to bid competitively, and verified riders to handle pickup/delivery.",
+    description:
+      "DhobiGo is Pakistan's first InDrive-style laundry marketplace, integrating real-time bidding, chat, and Hybrid Pickup and Delivery Services.",
     url: "https://dhobigo.com",
     siteName: "DhobiGo",
     images: [
@@ -28,7 +48,6 @@ export const metadata: Metadata = {
     locale: "en_IN",
     type: "website",
   },
-  // robots for search engine indexing
   robots: {
     index: true,
     follow: true,
@@ -40,20 +59,15 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  // google console Verification 
   verification: {
     google: "your-google-site-verification-code",
   },
 };
-export default function layout
-  ({
-    children,
-  }: Readonly<{
-    children: React.ReactNode;
-  }>) {
+
+export default function layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className='antialiased'>
+      <body className="antialiased font-english">
         <GlobalReduxProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
@@ -61,5 +75,5 @@ export default function layout
         </GlobalReduxProvider>
       </body>
     </html>
-  )
+  );
 }

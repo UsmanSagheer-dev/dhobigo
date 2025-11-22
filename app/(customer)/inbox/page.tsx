@@ -1,9 +1,12 @@
 
+import ProtectedRoute from '@/components/ProtectedRoute'
 
 export default function Inbox() {
   return (
-    <div>
-        <h1>Customer Inbox</h1>
-    </div>
+    <ProtectedRoute allowedRoles={["customer"]}>
+      <div>
+          <h1>Customer Inbox</h1>
+      </div>
+    </ProtectedRoute>
   )
 }

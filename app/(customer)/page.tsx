@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { User, Store, Bike } from 'lucide-react';
+import PublicRoute from '@/components/PublicRoute';
 
 export default function LandingPage() {
   return (

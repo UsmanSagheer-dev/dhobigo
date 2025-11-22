@@ -1,9 +1,12 @@
 import React from 'react'
+import ProtectedRoute from '@/components/ProtectedRoute'
 
 export default function Support() {
   return (
-    <div>
-      Support Page
-    </div>
+    <ProtectedRoute allowedRoles={["customer"]}>
+      <div>
+        Support Page
+      </div>
+    </ProtectedRoute>
   )
 }

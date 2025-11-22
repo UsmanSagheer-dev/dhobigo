@@ -1,5 +1,6 @@
 import React from 'react'
 import DhobiShell from './DhobiShell'
+import ProtectedRoute from '@/components/ProtectedRoute'
 
 export const metadata = {
   title: 'Dhobi',
@@ -7,7 +8,8 @@ export const metadata = {
 
 export default function DhobiLayout({ children }: { children: React.ReactNode }) {
   return (
-    // DhobiShell - now using global Redux provider from root layout
-    <DhobiShell>{children}</DhobiShell>
+    <ProtectedRoute allowedRoles={["provider"]}>
+      <DhobiShell>{children}</DhobiShell>
+    </ProtectedRoute>
   )
 }
