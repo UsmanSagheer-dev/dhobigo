@@ -1,9 +1,12 @@
 import React from 'react'
+import ProtectedRoute from '@/components/ProtectedRoute'
 
 export default function BecomeDhobi() {
   return (
-    <div>
-      become dhobie page
-    </div>
+    <ProtectedRoute allowedRoles={["customer"]}>
+      <div>
+        become dhobie page
+      </div>
+    </ProtectedRoute>
   )
 }

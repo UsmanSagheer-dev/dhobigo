@@ -1,9 +1,12 @@
 import React from 'react'
+import ProtectedRoute from '@/components/ProtectedRoute'
 
 export default function Settings() {
   return (
-    <div>
-      Settings Page
-    </div>
+    <ProtectedRoute allowedRoles={["customer"]}>
+      <div>
+        Settings Page
+      </div>
+    </ProtectedRoute>
   )
 }
