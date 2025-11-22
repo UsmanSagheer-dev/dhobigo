@@ -8,7 +8,6 @@ export function middleware(request: NextRequest) {
 
   const { pathname } = request.nextUrl
 
-  // Public routes that don't require authentication
   const publicRoutes = [
     '/',
     '/auth/login',

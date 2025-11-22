@@ -39,7 +39,6 @@ export default function ProtectedRoute({
       }
 
       if (allowedRoles && user && !allowedRoles.includes(user.role)) {
-        // Redirect based on user role
         switch (user.role) {
           case "customer":
             router.push("/dashboard");
