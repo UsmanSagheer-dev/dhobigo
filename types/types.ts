@@ -124,3 +124,49 @@ export interface FormDataRider {
   coverageAreas: string[];
   experience: string;
 }
+
+
+
+export interface RegisterFormData {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export interface UseRegisterReturn {
+  formData: RegisterFormData;
+  setFormData: (data: RegisterFormData) => void;
+  loading: boolean;
+  error: string | null;
+  handleSubmit: (e: React.FormEvent) => Promise<void>;
+}
+
+
+export interface ForgotPasswordFormData {
+  email: string;
+}
+
+export interface UseForgotPasswordReturn {
+  formData: ForgotPasswordFormData;
+  setFormData: (data: ForgotPasswordFormData) => void;
+  loading: boolean;
+  error: string | null;
+  success: string | null;
+  handleSubmit: (e: React.FormEvent) => Promise<void>;
+}
+
+
+export interface ResetPasswordFormData {
+  password: string;
+  confirmPassword: string;
+}
+
+export interface UseResetPasswordReturn {
+  formData: ResetPasswordFormData;
+  setFormData: (data: ResetPasswordFormData) => void;
+  loading: boolean;
+  error: string | null;
+  success: string | null;
+  handleSubmit: (e: React.FormEvent) => Promise<void>;
+}

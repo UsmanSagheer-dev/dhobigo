@@ -16,6 +16,8 @@ export const useLogin = () => {
     setLoading(true);
 
     try {
+      // API currently unavailable — using dummy data for local testing.
+      /*
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -24,30 +26,43 @@ export const useLogin = () => {
 
       const data = await response.json();
 
-      if (response.ok) {
-        localStorage.setItem("token", data.token);
-
-        if (data.user.role === "customer") {
-          router.push("/customer/dashboard");
-        } else if (data.user.role === "provider") {
-          if (data.user.status === "approved") {
-            router.push("/provider/dashboard");
-          } else if (data.user.status === "pending") {
-            setError("Your application is pending admin approval.");
-          } else {
-            setError("Your application was rejected. Please contact support.");
-          }
-        } else if (data.user.role === "rider") {
-          if (data.user.status === "approved") {
-            router.push("/rider/dashboard");
-          } else if (data.user.status === "pending") {
-            setError("Your application is pending admin approval.");
-          } else {
-            setError("Your application was rejected. Please contact support.");
-          }
-        }
-      } else {
+      if (!response.ok) {
         setError(data.message || "Login failed");
+        return;
+      }
+      */
+
+      const dummyRole = formData.email.includes("provider")
+        ? "provider"
+        : formData.email.includes("rider")
+        ? "rider"
+        : "customer";
+
+      const data = {
+        token: "dummy-token",
+        user: { role: dummyRole, status: "approved" },
+      } as any;
+
+      localStorage.setItem("token", data.token);
+
+      if (data.user.role === "customer") {
+        router.push("/dashboard");
+      } else if (data.user.role === "provider") {
+        if (data.user.status === "approved") {
+          router.push("/provider/dashboard");
+        } else if (data.user.status === "pending") {
+          setError("Your application is pending admin approval.");
+        } else {
+          setError("Your application was rejected. Please contact support.");
+        }
+      } else if (data.user.role === "rider") {
+        if (data.user.status === "approved") {
+          router.push("/rider/dashboard");
+        } else if (data.user.status === "pending") {
+          setError("Your application is pending admin approval.");
+        } else {
+          setError("Your application was rejected. Please contact support.");
+        }
       }
     } catch (err) {
       setError("Something went wrong");
