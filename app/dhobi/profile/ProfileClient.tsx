@@ -25,7 +25,7 @@ const ProfileClient = () => {
       <div className="flex justify-between items-center mb-5">
         <div>
           <h1 className="text-[20px]">Earnings</h1>
-          <h1 className="text-(--textSecondary) dark:text-(--textSecondary)">کمائی</h1>
+          <h1 className="font-urdu text-textSecondary  ">کمائی</h1>
         </div>
       </div>
 
@@ -40,7 +40,7 @@ const ProfileClient = () => {
               : "text-gray-600 dark:text-gray-300"
           }`}
         >
-          Earnings / کمائی
+          Earnings / <span className="font-urdu">کمائی</span>
         </Button>
 
         <Button
@@ -52,7 +52,7 @@ const ProfileClient = () => {
               : "text-gray-600 dark:text-gray-300"
           }`}
         >
-          Profile / پروفائل
+          Profile / <span className="font-urdu">پروفائل</span>
         </Button>
       </nav>
 

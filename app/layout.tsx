@@ -52,7 +52,7 @@ export default function layout
   }>) {
   return (
     <html lang="en">
-      <body className='antialiased'>
+      <body className='antialiased font-english'>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>

@@ -136,7 +136,7 @@ export default function ProfileForm() {
 
       {/* Documents */}
       <div className="p-4 bg-white dark:bg-gray-800 rounded-md shadow-sm">
-        <h3 className="font-medium mb-3">Documents / دستاویزات</h3>
+        <h3 className="font-medium mb-3">Documents / <span className="font-urdu">دستاویزات</span></h3>
 
         <div className="space-y-2">
           {documents.map((d) => (
