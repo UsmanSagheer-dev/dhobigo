@@ -27,10 +27,10 @@ export default function Sidebar({ onNavigate }: Props) {
     <nav
       style={{
         padding: 24,
-        backgroundColor: "var(--foreground)",
+        backgroundColor: "var(--color-foreground)",
         height: "100%",
         boxSizing: "border-box",
-        borderRight: "1px solid var(--border)",
+        borderRight: "1px solid var(--color-border)",
       }}
     >
       <div style={{ marginBottom: 28 }}>
@@ -38,7 +38,7 @@ export default function Sidebar({ onNavigate }: Props) {
           href="/dhobi"
           style={{
             textDecoration: "none",
-            color: "var(--primary)",
+            color: "var(--color-primary)",
             fontWeight: 700,
             fontSize: 18,
           }}
@@ -46,7 +46,7 @@ export default function Sidebar({ onNavigate }: Props) {
         >
           DhoobiGo
         </Link>
-        <div style={{ fontSize: 12, color: "var(--textSecondary)" }}>Dhobi Portal</div>
+        <div style={{ fontSize: 12, color: "var(--color-textSecondary)" }}>Dhobi Portal</div>
       </div>
 
       <ul
@@ -64,8 +64,8 @@ export default function Sidebar({ onNavigate }: Props) {
             : pathname === l.href || pathname.startsWith(l.href + "/");
           const style: React.CSSProperties = {
             ...navLinkStyle,
-            background: isActive ? "var(--primary)" : undefined,
-            color: isActive ? "var(--foreground)" : "var(--textColor)",
+            background: isActive ? "var(--color-primary)" : undefined,
+            color: isActive ? "var(--color-foreground)" : "var(--color-textColor)",
           };
 
           return (
@@ -95,7 +95,7 @@ const navLinkStyle: React.CSSProperties = {
   gap: 12,
   padding: "12px 18px",
   borderRadius: 12,
-  color: "var(--textColor)",
+  color: "var(--color-textColor)",
   textDecoration: "none",
   minWidth: 180,
   // make it easier to scan and look consistent

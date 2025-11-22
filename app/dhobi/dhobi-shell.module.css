@@ -5,8 +5,8 @@
 
 .sidebar {
   width: var(--sidebar-width, 260px);
-  border-right: 1px solid var(--border);
-  background: var(--foreground);
+  border-right: 1px solid var(--color-border);
+  background: var(--color-foreground);
   /* desktop: sidebar visible */
   /* keep the sidebar fixed on desktop so it doesn't scroll with content */
   position: fixed;
