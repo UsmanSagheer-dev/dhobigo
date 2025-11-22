@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import ProfileInput from "./ProfileInput";
 import Button from "@/components/Button";
 import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch, RootState } from "@/store";
+import type { AppDispatch, RootState } from "@/store/store";
 import {
   saveProfile,
   selectProfile,

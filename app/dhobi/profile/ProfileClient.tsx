@@ -3,7 +3,7 @@ import Button from "@/components/Button";
 import { useState } from "react";
 
 import { useSelector } from "react-redux";
-import { RootState } from "@/store";
+import { RootState } from "@/store/store";
 import { Offer } from "@/types/types";
 import { selectPending, selectAccepted } from "@/store/slices/offersSlice";
 import EarningsPanel from "./components/EarningsPanel";

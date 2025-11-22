@@ -127,6 +127,21 @@ export interface FormDataRider {
 
 
 
+export interface LoginFormData {
+  email: string;
+  password: string;
+}
+
+export interface UseLoginReturn {
+  formData: LoginFormData;
+  setFormData: (data: LoginFormData) => void;
+  loading: boolean;
+  error: string | null;
+  success: string | null;
+  handleSubmit: (e: React.FormEvent) => Promise<void>;
+  clearMessages: () => void;
+}
+
 export interface RegisterFormData {
   name: string;
   email: string;
@@ -139,7 +154,9 @@ export interface UseRegisterReturn {
   setFormData: (data: RegisterFormData) => void;
   loading: boolean;
   error: string | null;
+  success: string | null;
   handleSubmit: (e: React.FormEvent) => Promise<void>;
+  clearMessages: () => void;
 }
 
 
@@ -154,6 +171,7 @@ export interface UseForgotPasswordReturn {
   error: string | null;
   success: string | null;
   handleSubmit: (e: React.FormEvent) => Promise<void>;
+  clearMessages: () => void;
 }
 
 
@@ -169,4 +187,24 @@ export interface UseResetPasswordReturn {
   error: string | null;
   success: string | null;
   handleSubmit: (e: React.FormEvent) => Promise<void>;
+  clearMessages: () => void;
 }
+
+
+export interface User {
+  id?: string;
+  name?: string;
+  email?: string;
+  role: "customer" | "provider" | "rider" | "admin"; 
+  providerStatus?: "none" | "pending" | "approved" | "rejected";
+  riderStatus?: "none" | "pending" | "approved" | "rejected";
+}
+export interface AuthState {
+  user: User | null;
+  token: string | null;
+  isAuthenticated: boolean;
+  loading: boolean;
+  error: string | null;
+  success: string | null;
+}
+

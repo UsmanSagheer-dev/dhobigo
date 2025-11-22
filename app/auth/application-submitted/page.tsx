@@ -6,7 +6,7 @@ import { CheckCircle } from 'lucide-react';
 
 export default function ApplicationSubmitted() {
   const searchParams = useSearchParams();
-  const role = searchParams.get('role') || 'user'; // fallback if role is missing
+  const role = searchParams.get('role') || 'user'; 
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 flex items-center justify-center p-4">

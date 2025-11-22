@@ -7,7 +7,7 @@ import { useRegister } from "@/hooks/useRegister";
 import Button from "@/components/Button";
 
 export default function RegisterPage() {
-  const { formData, setFormData, loading, error, handleSubmit } = useRegister();
+  const { formData, setFormData, loading, error, success, handleSubmit } = useRegister();
 
   return (
     <div className="w-full rounded-xl shadow-2xl p-4 bg-white">
@@ -23,6 +23,12 @@ export default function RegisterPage() {
       {error && (
         <div className="bg-red-100 text-red-700 p-3 rounded-lg mb-4">
           {error}
+        </div>
+      )}
+      
+      {success && (
+        <div className="bg-green-100 text-green-700 p-3 rounded-lg mb-4">
+          {success}
         </div>
       )}
 

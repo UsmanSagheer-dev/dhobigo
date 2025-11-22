@@ -1,75 +1,43 @@
-import { useState } from "react";
+// hooks/useLogin.ts
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import { loginUser, clearError, clearSuccess } from "@/store/slices/authSlice";
 
 export const useLogin = () => {
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const dispatch = useDispatch<AppDispatch>();
+  const { loading, error, success, user, isAuthenticated } = useSelector((state: RootState) => state.auth);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
+  const [formData, setFormData] = useState({ email: "", password: "" });
 
-    try {
-      // API currently unavailable — using dummy data for local testing.
-      /*
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        setError(data.message || "Login failed");
-        return;
-      }
-      */
-
-      const dummyRole = formData.email.includes("provider")
-        ? "provider"
-        : formData.email.includes("rider")
-        ? "rider"
-        : "customer";
-
-      const data = {
-        token: "dummy-token",
-        user: { role: dummyRole, status: "approved" },
-      } as any;
-
-      localStorage.setItem("token", data.token);
-
-      if (data.user.role === "customer") {
-        router.push("/dashboard");
-      } else if (data.user.role === "provider") {
-        if (data.user.status === "approved") {
-          router.push("/provider/dashboard");
-        } else if (data.user.status === "pending") {
-          setError("Your application is pending admin approval.");
-        } else {
-          setError("Your application was rejected. Please contact support.");
-        }
-      } else if (data.user.role === "rider") {
-        if (data.user.status === "approved") {
-          router.push("/rider/dashboard");
-        } else if (data.user.status === "pending") {
-          setError("Your application is pending admin approval.");
-        } else {
-          setError("Your application was rejected. Please contact support.");
-        }
-      }
-    } catch (err) {
-      setError("Something went wrong");
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      router.push("/dashboard");
     }
+  }, [isAuthenticated, user, router]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    dispatch(clearError());
+    dispatch(clearSuccess());
+
+    await dispatch(loginUser(formData));
   };
 
-  return { formData, setFormData, loading, error, handleSubmit };
+  const clearMessages = () => {
+    dispatch(clearError());
+    dispatch(clearSuccess());
+  };
+
+  return {
+    formData,
+    setFormData,
+    loading,
+    error,
+    success,
+    handleSubmit,
+    clearMessages,
+  };
 };

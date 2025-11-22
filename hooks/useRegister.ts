@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import {
+  registerUser,
+  clearError,
+  clearSuccess,
+} from "@/store/slices/authSlice";
 import { RegisterFormData, UseRegisterReturn } from "@/types/types";
 
 export const useRegister = (): UseRegisterReturn => {
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { loading, error, success } = useSelector(
+    (state: RootState) => state.auth
+  );
+
   const [formData, setFormData] = useState<RegisterFormData>({
     name: "",
     email: "",
@@ -11,50 +24,36 @@ export const useRegister = (): UseRegisterReturn => {
     confirmPassword: "",
   });
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  useEffect(() => {
+    if (success && success.includes("Registration successful")) {
+      const timer = setTimeout(() => {
+        router.push("/auth/login");
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [success, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
+    dispatch(clearError());
+    dispatch(clearSuccess());
 
-    // Validation
-    if (formData.name.trim().length < 2) {
-      setError("Name must be at least 2 characters long");
-      setLoading(false);
-      return;
-    }
+    const resultAction = await dispatch(registerUser(formData));
 
-    if (formData.password.length < 6) {
-      setError("Password must be at least 6 characters long");
-      setLoading(false);
-      return;
-    }
-
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
-      setLoading(false);
-      return;
-    }
-
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Simulate success
-      console.log("Registration successful:", {
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
+    if (registerUser.fulfilled.match(resultAction)) {
+      // Reset form on success
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
       });
-
-      router.push("/auth/login");
-    } catch (err) {
-      console.error("Registration error:", err);
-      setError("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
     }
+  };
+
+  const clearMessages = () => {
+    dispatch(clearError());
+    dispatch(clearSuccess());
   };
 
   return {
@@ -62,6 +61,8 @@ export const useRegister = (): UseRegisterReturn => {
     setFormData,
     loading,
     error,
+    success,
     handleSubmit,
+    clearMessages,
   };
 };

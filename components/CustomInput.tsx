@@ -65,7 +65,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
             onClick={togglePassword}
             className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-500 hover:text-gray-700 transition cursor-pointer"
           >
-            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
           </button>
         )}
       </div>

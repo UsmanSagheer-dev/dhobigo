@@ -1,61 +1,55 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import { resetPassword, clearError, clearSuccess } from "@/store/slices/authSlice";
 import { ResetPasswordFormData, UseResetPasswordReturn } from "@/types/types";
 
 export const useResetPassword = (token: string): UseResetPasswordReturn => {
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+  const { loading, error, success } = useSelector((state: RootState) => state.auth);
+  
   const [formData, setFormData] = useState<ResetPasswordFormData>({
     password: "",
     confirmPassword: "",
   });
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-    setSuccess(null);
-
-    // Validation
-    if (formData.password.length < 6) {
-      setError("Password must be at least 6 characters long");
-      setLoading(false);
-      return;
-    }
-
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
-      setLoading(false);
-      return;
-    }
-
-    try {
-      // Dummy API call - replace with actual API
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate API delay
-
-      // Simulate success
-      console.log("Password reset successful for token:", token);
-      console.log("New password:", formData.password);
-
-      setSuccess(
-        "Password has been reset successfully! Redirecting to login..."
-      );
-
-      // Redirect to login after 2 seconds
-      setTimeout(() => {
+  // Handle navigation on successful password reset
+  useEffect(() => {
+    if (success && success.includes("Password has been reset successfully")) {
+      const timer = setTimeout(() => {
         router.push("/auth/login");
       }, 2000);
-    } catch (err) {
-      console.error("Reset password error:", err);
-      setError(
-        "Something went wrong. Please try again or request a new reset link."
-      );
-    } finally {
-      setLoading(false);
+      return () => clearTimeout(timer);
     }
+  }, [success, router]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+    dispatch(clearError());
+    dispatch(clearSuccess());
+
+    const resultAction = await dispatch(resetPassword({
+      token,
+      password: formData.password,
+      confirmPassword: formData.confirmPassword,
+    }));
+
+    if (resetPassword.fulfilled.match(resultAction)) {
+      console.log("Password reset successful for token:", token);
+      
+      // Reset form on success
+      setFormData({
+        password: "",
+        confirmPassword: "",
+      });
+    }
+  };
+
+  const clearMessages = () => {
+    dispatch(clearError());
+    dispatch(clearSuccess());
   };
 
   return {
@@ -65,5 +59,6 @@ export const useResetPassword = (token: string): UseResetPasswordReturn => {
     error,
     success,
     handleSubmit,
+    clearMessages,
   };
 };
