@@ -208,4 +208,3 @@ export interface AuthState {
   success: string | null;
 }
 
-// Initial state
