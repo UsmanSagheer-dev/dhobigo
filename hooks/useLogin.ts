@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/store";
+import { AppDispatch, RootState } from "@/store/store";
 import { loginUser, clearError, clearSuccess } from "@/store/slices/authSlice";
 
 export const useLogin = () => {

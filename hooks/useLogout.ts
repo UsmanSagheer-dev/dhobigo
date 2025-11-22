@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/store";
+import { AppDispatch } from "@/store/store";
 import { logoutUser } from "@/store/slices/authSlice";
 
 export const useLogout = () => {

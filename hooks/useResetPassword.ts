@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/store";
+import { AppDispatch, RootState } from "@/store/store";
 import { resetPassword, clearError, clearSuccess } from "@/store/slices/authSlice";
 import { ResetPasswordFormData, UseResetPasswordReturn } from "@/types/types";
 

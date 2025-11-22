@@ -5,7 +5,7 @@ import { useState } from "react";
 import OfferCard from "../components/OfferCard";
 import CounterModal from "../components/CounterModal";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "@/store";
+import { RootState, AppDispatch } from "@/store/store";
 import { Offer } from "@/types/types";
 import {
   acceptOffer,

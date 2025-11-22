@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/store";
+import { AppDispatch } from "@/store/store";
 import { loadUserFromStorage } from "@/store/slices/authSlice";
 
 export default function AuthProvider({

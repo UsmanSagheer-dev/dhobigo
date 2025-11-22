@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/store";
+import { AppDispatch, RootState } from "@/store/store";
 import { forgotPassword, clearError, clearSuccess } from "@/store/slices/authSlice";
 import { ForgotPasswordFormData, UseForgotPasswordReturn } from "@/types/types";
 
