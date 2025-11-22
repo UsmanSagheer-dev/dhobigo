@@ -2,6 +2,7 @@ import React from 'react'
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import type { Metadata } from "next";
+import GlobalReduxProvider from "@/components/GlobalReduxProvider";
 export const metadata: Metadata = {
   title: {
     default: "DhobiGo - Daam Aapka, Dhobi Humara",  // Default title
@@ -53,9 +54,11 @@ export default function layout
   return (
     <html lang="en">
       <body className='antialiased'>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-        </ThemeProvider>
+        <GlobalReduxProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {children}
+          </ThemeProvider>
+        </GlobalReduxProvider>
       </body>
     </html>
   )

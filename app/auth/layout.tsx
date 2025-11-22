@@ -6,7 +6,7 @@ export default function AuthLayout({
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
       <div
-        className="hidden lg:block w-1/2 bg-cover bg-center bg-no-repeat"
+        className="hidden lg:block lg:w-1/2 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('/assets/images/dhobisignup.jpg')",
         }}
@@ -18,7 +18,8 @@ export default function AuthLayout({
           </div>
         </div>
       </div>
-      <div className="w-full lg:w-1/2 flex items-center justify-center bg-[#F0F7FF] p-6 lg:p-12">
+
+      <div className="w-full lg:w-1/2 min-h-screen flex items-center justify-center bg-[#F0F7FF] p-4 sm:p-6 lg:p-12">
         <div className="w-full max-w-md">{children}</div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import offersReducer from "./slices/offersSlice";
 import profileReducer from "./slices/profileSlice";
 import ordersReducer from "./slices/ordersSlice";
+import authReducer from "./slices/authSlice";
 import { loadFromStorage, saveToStorage } from "@/utils/storage";
 import IMAGES from "@/public/assets/images";
 
@@ -49,7 +50,12 @@ const initialOffers = loadInitialOffers();
 const initialProfile = loadFromStorage(PROFILE_STORAGE_KEY);
 
 export const store = configureStore({
-  reducer: { offers: offersReducer, profile: profileReducer, orders: ordersReducer },
+  reducer: { 
+    offers: offersReducer, 
+    profile: profileReducer, 
+    orders: ordersReducer,
+    auth: authReducer,
+  },
   preloadedState: { offers: { offers: initialOffers }, profile: initialProfile || undefined },
 });
 

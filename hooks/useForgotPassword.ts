@@ -1,24 +1,26 @@
-import { ForgotPasswordFormData, UseForgotPasswordReturn } from "@/types/types";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store";
+import { forgotPassword, clearError, clearSuccess } from "@/store/slices/authSlice";
+import { ForgotPasswordFormData, UseForgotPasswordReturn } from "@/types/types";
 
 export const useForgotPassword = (): UseForgotPasswordReturn => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { loading, error, success } = useSelector((state: RootState) => state.auth);
+  
   const [formData, setFormData] = useState<ForgotPasswordFormData>({
     email: "",
   });
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
-    setSuccess(null);
+    dispatch(clearError());
+    dispatch(clearSuccess());
 
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
+    const resultAction = await dispatch(forgotPassword(formData.email));
+    
+    if (forgotPassword.fulfilled.match(resultAction)) {
+      // Show toast if available
       if (typeof window !== "undefined") {
         try {
           const mod = await import("@/utils/toast");
@@ -34,15 +36,14 @@ export const useForgotPassword = (): UseForgotPasswordReturn => {
         }
       }
 
-      setSuccess("Password reset link has been sent to your email address.");
-
+      // Reset form on success
       setFormData({ email: "" });
-    } catch (err) {
-      console.error("Forgot password error:", err);
-      setError("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
     }
+  };
+
+  const clearMessages = () => {
+    dispatch(clearError());
+    dispatch(clearSuccess());
   };
 
   return {
@@ -52,5 +53,6 @@ export const useForgotPassword = (): UseForgotPasswordReturn => {
     error,
     success,
     handleSubmit,
+    clearMessages,
   };
 };
