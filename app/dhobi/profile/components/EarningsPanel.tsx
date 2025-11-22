@@ -48,7 +48,7 @@ const EarningsPanel: React.FC<Props> = ({
 
       <div className="p-4 bg-white dark:bg-gray-800 rounded-md shadow-sm">
         <h3 className="text-lg font-medium mb-3">
-          Payout History / ادائیگی کی تاریخ
+          Payout History / <span className="font-urdu">ادائیگی کی تاریخ</span>
         </h3>
 
         <div>
