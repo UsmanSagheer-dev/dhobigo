@@ -1,5 +1,5 @@
 import React from 'react'
-import ProtectedRoute from '@/components/ProtectedRoute'
+// import ProtectedRoute from '@/components/ProtectedRoute'
 
 export const metadata = {
   title: 'Rider Dashboard',
@@ -7,8 +7,8 @@ export const metadata = {
 
 export default function RiderLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ProtectedRoute allowedRoles={["rider"]}>
+    // <ProtectedRoute allowedRoles={["rider"]}>    </ProtectedRoute>
       {children}
-    </ProtectedRoute>
+
   )
 }

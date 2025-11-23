@@ -1,12 +1,12 @@
 import React from 'react'
-import ProtectedRoute from '@/components/ProtectedRoute'
+// import ProtectedRoute from '@/components/ProtectedRoute'
 
 export default function FindDhobi() {
   return (
-    <ProtectedRoute allowedRoles={["customer"]}>
+    // <ProtectedRoute allowedRoles={["customer"]}>    </ProtectedRoute>
       <div>
         find dhobi page
       </div>
-    </ProtectedRoute>
+
   )
 }
