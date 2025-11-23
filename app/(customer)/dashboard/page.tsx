@@ -2,7 +2,6 @@
 
 import { MapPin, Clock, Package } from 'lucide-react';
 import { useCustomerDashboard } from '../../../hooks/useCustomerDashboard';
-import ProtectedRoute from '@/components/ProtectedRoute';
 
 export default function CustomerDashboard() {
   const { user, orders, loading, handleLogout } = useCustomerDashboard();
@@ -20,8 +19,7 @@ export default function CustomerDashboard() {
   // }
 
   return (
-    <ProtectedRoute allowedRoles={["customer"]}>
-      <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-indigo-600 text-white p-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -29,12 +27,7 @@ export default function CustomerDashboard() {
             <h1 className="text-3xl font-bold">Welcome, usman!</h1>
             <p className="text-indigo-200">Customer Dashboard</p>
           </div>
-          <button
-            onClick={handleLogout}
-            className="bg-white text-indigo-600 px-4 py-2 rounded-lg font-semibold hover:bg-indigo-50 transition"
-          >
-            Logout
-          </button>
+         
         </div>
       </div>
 
@@ -100,6 +93,5 @@ export default function CustomerDashboard() {
         </div>
       </div>
     </div>
-    </ProtectedRoute>
   );
 }

@@ -24,7 +24,7 @@ export const useCustomerDashboard = () => {
     const token = localStorage.getItem("token");
     if (!token) {
       console.warn("No token found. Redirecting to login page.");
-      router.push("/customer/dashboard");
+      router.push("/dashboard");
       return;
     }
 
