@@ -1,69 +1,20 @@
-'use client';
-
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '@/store/store';
-import { logoutUser } from '@/store/slices/authSlice';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import ThemeToggle from "@/components/ThemeToggle"
+import Navbar from "./Navbar"
+import Logo from "@/components/Logo"
 
 export default function Header() {
-  const { isAuthenticated, user } = useSelector((state: RootState) => state.auth);
-  const dispatch = useDispatch<AppDispatch>();
-  const router = useRouter();
 
-  const handleLogout = async () => {
-    await dispatch(logoutUser());
-    router.push('/auth/login');
-  };
 
   return (
-    <header className='bg-indigo-600 shadow-md'>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center">
-            <Link href="/" className="text-2xl font-bold text-white">
-              DhobiGo
-            </Link>
-          </div>
-
-          <nav className="flex items-center space-x-4">
-            {isAuthenticated && user ? (
-              <>
-                <span className="text-white">Welcome, {user.name}</span>
-                {user.role === 'customer' && (
-                  <>
-                    <Link href="/dashboard" className="text-white hover:text-indigo-200">
-                      Dashboard
-                    </Link>
-                    <Link href="/find-dhobi" className="text-white hover:text-indigo-200">
-                      Find Dhobi
-                    </Link>
-                    <Link href="/your-orders" className="text-white hover:text-indigo-200">
-                      Orders
-                    </Link>
-                  </>
-                )}
-                <button
-                  onClick={handleLogout}
-                  className="bg-indigo-700 hover:bg-indigo-800 text-white px-4 py-2 rounded-md text-sm font-medium"
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              <>
-                <Link href="/auth/login" className="text-white hover:text-indigo-200">
-                  Login
-                </Link>
-                <Link href="/auth/register" className="bg-indigo-700 hover:bg-indigo-800 text-white px-4 py-2 rounded-md text-sm font-medium">
-                  Sign Up
-                </Link>
-              </>
-            )}
-          </nav>
-        </div>
+    <div className='bg-foreground/80 p-5 flex justify-between items-center sticky top-0 z-50'>
+      <div className="absolute inset-0 backdrop-blur-[5px] -z-10"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-0.25 bg-gradient-to-r from-primary/30 via-primary/90 to-primary/30 -z-10"></div>
+      <div><Logo /></div>
+      <Navbar />
+      <div className="flex items-center gap-5">
+        <div><ThemeToggle /></div>
+        <div>Action Buttons</div>
       </div>
-    </header>
-  );
+    </div>
+  )
 }

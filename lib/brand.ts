@@ -1,4 +1,6 @@
-export const Brand = {
+
+import { Brand } from '@/types/types';
+export const brand: Brand = {
     name: "DhobiGo",
     fullName: "DhobiGo – Online Laundry Services ",
     tagline: "Daam Aapka, Dhobi Humara",
@@ -8,4 +10,5 @@ export const Brand = {
     shortDescription: "Doorstep laundry with real-time bidding starting ₹599",
     supportEmail: "support@dhobigo.com",
     contactEmail: "contact@dhobigo.com",
+
 }

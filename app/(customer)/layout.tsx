@@ -43,7 +43,9 @@ export default function CustomerLayout({
   return (
     <>
       <Header />
+      <div className="min-h-screen bg-gradient-to-b from-primary/20 stops-90 via-background  to-background">
       {children}
+      </div>
       <Footer />
     </>
   );
