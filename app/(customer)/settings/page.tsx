@@ -3,10 +3,10 @@ import ProtectedRoute from '@/components/ProtectedRoute'
 
 export default function Settings() {
   return (
-    <ProtectedRoute allowedRoles={["customer"]}>
+    // <ProtectedRoute allowedRoles={["customer"]}>    </ProtectedRoute>
       <div>
         Settings Page
       </div>
-    </ProtectedRoute>
+
   )
 }

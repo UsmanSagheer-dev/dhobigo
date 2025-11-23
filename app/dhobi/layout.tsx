@@ -8,8 +8,8 @@ export const metadata = {
 
 export default function DhobiLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ProtectedRoute allowedRoles={["provider"]}>
+    // <ProtectedRoute allowedRoles={["provider"]}>{/* </ProtectedRoute> */}
       <DhobiShell>{children}</DhobiShell>
-    </ProtectedRoute>
+    
   )
 }
