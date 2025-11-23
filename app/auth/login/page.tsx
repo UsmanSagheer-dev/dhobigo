@@ -14,7 +14,7 @@ export default function LoginPage() {
         <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
           Welcome Back!
         </h1>
-        <p className="mt-4 text-lg text-gray-600">
+        <p className="mt-4 text-lg text-textColor">
           Log in to schedule pickup & track your fresh laundry
         </p>
       </div>

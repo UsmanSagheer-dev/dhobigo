@@ -52,7 +52,7 @@ export default function CustomerRegister() {
 
       if (response.ok) {
         localStorage.setItem("token", data.token);
-        router.push("/customer/dashboard");
+        router.push("/dashboard");
       } else {
         setError(data.message || "Registration failed");
       }
