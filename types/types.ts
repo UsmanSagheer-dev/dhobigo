@@ -1,3 +1,13 @@
+export type Brand ={
+  name: string;
+  fullName: string;
+  tagline: string;
+  taglineAlt: string;
+  description: string;
+  shortDescription: string;
+  supportEmail: string;
+  contactEmail: string;
+}
 export type Order = {
   orderId: number;
   customerPhoto: string;
