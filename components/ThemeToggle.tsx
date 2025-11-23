@@ -23,6 +23,10 @@ export default function ThemeToggle() {
         background: "transparent",
         cursor: "pointer",
         padding: 6,
+        color: "var(--color-textSecondary)",
+        transition: "color 0.3s ease",
+        
+      
       }}
     >
       {isDark ? <Sun size={18} /> : <Moon size={18} />}
