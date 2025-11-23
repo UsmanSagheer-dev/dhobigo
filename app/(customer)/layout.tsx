@@ -2,7 +2,7 @@
 'use client';
 
 import { ThemeProvider } from "next-themes";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import Footer from "./components/Footer";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
