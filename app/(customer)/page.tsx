@@ -6,7 +6,7 @@ import PublicRoute from '@/components/PublicRoute';
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+    <div className="flex items-center justify-center p-4">
       <div className="max-w-4xl w-full bg-white rounded-2xl shadow-2xl p-8">
 
         {/* Heading */}
